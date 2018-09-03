@@ -1,0 +1,155 @@
+{
+    "uuid": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+    "visibleCS": false,
+    "buildParams": {
+        "uuid": "58257036-2b3b-39dd-057d-c0fdaaa4d6c0",
+        "BuidHash": "cb3c3d8",
+        "BuildVersion": "0.0.3",
+        "LastSaveDate": "2018-08-27, 10:06:25 AM",
+        "name": "Build Parameters",
+        "typeName": "BuildParams"
+    },
+    "modelParams": {
+        "uuid": "84816af9-17a5-aa89-5415-b4728806f646",
+        "gravity": "0, 0, 0",
+        "startTime": "0",
+        "endTime": "2",
+        "integratorStepSize": "0.01",
+        "outputStepSize": "0.1",
+        "name": "Model Cosine Force",
+        "typeName": "ModelParams"
+    },
+    "bodyContainer": {
+        "uuid": "671b1b5d-d59f-1841-c808-3b4b199fc940",
+        "parentUuid": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+        "objects": [
+            {
+                "uuid": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                "mass": "1",
+                "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+                "translation": "0, 0, 0",
+                "orientation": "0, 0, 0",
+                "linearVel": "0, 0, 0",
+                "angularVel": "0, 0, 0",
+                "centerOfMass": "0, 0, 0",
+                "fixed": false,
+                "visibleCS": false,
+                "joint": {
+                    "uuid": "5e24913f-642a-22c4-e7eb-dd63d4986f56",
+                    "name": "my_body_A",
+                    "referenceCSidFrom": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+                    "typeName": "Joint"
+                },
+                "markerContainer": {
+                    "uuid": "8bfa192d-a010-c02e-ddff-c20fd0f0f0e7",
+                    "parentUuid": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                    "objects": [],
+                    "name": "Markers",
+                    "typeName": "MarkerContainer"
+                },
+                "geometryContainer": {
+                    "uuid": "3ad24241-f8e4-7b70-4508-b5290ea7b2a0",
+                    "parentUuid": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                    "objects": [
+                        {
+                            "uuid": "48d9089d-569d-5784-1d56-d6573b656dd3",
+                            "visible": true,
+                            "width": "10",
+                            "height": "4",
+                            "depth": "1",
+                            "geometryType": "Box",
+                            "bodyUuid": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                            "name": "Box 2",
+                            "referenceCSID": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                            "typeName": "Box"
+                        }
+                    ],
+                    "name": "Geometries",
+                    "typeName": "GeometryContainer"
+                },
+                "name": "my_body_A",
+                "typeName": "Body"
+            },
+            {
+                "uuid": "1d6b285c-9732-7f1f-02c7-63adb2fa7ee5",
+                "mass": "1",
+                "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+                "translation": "0, 0, 0",
+                "orientation": "0, 0, 0",
+                "linearVel": "0, 0, 0",
+                "angularVel": "0, 0, 0",
+                "centerOfMass": "0, 0, 0",
+                "fixed": true,
+                "visibleCS": true,
+                "joint": {
+                    "uuid": "3ddf4cfa-affc-aaf0-dbc1-c088c4b9177a",
+                    "name": "Ground",
+                    "referenceCSidFrom": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+                    "typeName": "Joint"
+                },
+                "markerContainer": {
+                    "uuid": "de8d0efe-15d8-d179-04c1-b2ab87963e5e",
+                    "parentUuid": "1d6b285c-9732-7f1f-02c7-63adb2fa7ee5",
+                    "objects": [],
+                    "name": "Markers",
+                    "typeName": "MarkerContainer"
+                },
+                "geometryContainer": {
+                    "uuid": "4bd4659a-0745-8065-3e9f-4861b4c2a02e",
+                    "parentUuid": "1d6b285c-9732-7f1f-02c7-63adb2fa7ee5",
+                    "objects": [],
+                    "name": "Geometries",
+                    "typeName": "GeometryContainer"
+                },
+                "name": "Ground",
+                "typeName": "Body"
+            }
+        ],
+        "name": "Bodies",
+        "typeName": "BodyContainer"
+    },
+    "linkContainer": {
+        "uuid": "9f9c7916-4d75-8bc5-ce65-3f5a88c5f589",
+        "parentUuid": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+        "objects": [],
+        "name": "Links",
+        "typeName": "LinkContainer"
+    },
+    "functionContainer": {
+        "uuid": "9755e5c3-ef2e-d879-ae56-e7f8f22cc643",
+        "parentUuid": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+        "objects": [
+            {
+                "uuid": "19a69098-3d7a-0251-cb55-d2f1437dd535",
+                "funcValue": "1*cos(2*pi*t*0.5)",
+                "dValue": "0",
+                "ddValue": "0",
+                "derivativesCount": 0,
+                "name": "Function0",
+                "typeName": "SymbolicFunction"
+            }
+        ],
+        "name": "Functions",
+        "typeName": "FunctionContainer"
+    },
+    "forceContainer": {
+        "uuid": "d32e6d05-fd7c-407f-3408-781e2241abf7",
+        "parentUuid": "ed2a7ef0-309e-c1b2-2cfd-2cbf9d86efe3",
+        "objects": [
+            {
+                "uuid": "33adf588-9b4c-adfd-65c5-3bc601940449",
+                "forceValue": "0, 0, Function0",
+                "torqueValue": "0, 0, 0",
+                "forceType": "Applied force",
+                "name": "Applied force 1",
+                "cs1ID": "f0bd9dbd-ad68-ccb1-2998-061ffe1fad44",
+                "cs2ID": "1d6b285c-9732-7f1f-02c7-63adb2fa7ee5",
+                "typeName": "AppliedForce"
+            }
+        ],
+        "name": "Forces",
+        "typeName": "ForceContainer"
+    },
+    "name": "Model Four Bar with Forces",
+    "typeName": "CAEModel"
+}

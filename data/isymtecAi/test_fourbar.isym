@@ -1,0 +1,364 @@
+{
+  "uuid": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+  "visibleCS": false,
+  "modelParams": {
+    "uuid": "0451f642-7eda-65f0-ca4b-f5e5ccdc3feb",
+	"gravity": "0, -9.80665, 0",
+	"startTime": "0",
+	"endTime": "5",
+	"integratorStepSize": "0.01",
+	"outputStepSize": "0.1",
+	"name": "Model Parameters",
+	"typeName": "ModelParams"
+  },
+  "bodyContainer": {
+    "uuid": "b18176d1-dc18-c7ce-f1b5-699f2b7d6a94",
+    "parentUuid": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+    "objects": [
+      {
+        "uuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+        "mass": "1",
+        "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+        "translation": "0, 0, 0",
+        "orientation": "0, 0, 0",
+        "linearVel": "0, 0, 0",
+        "angularVel": "0, 0, 0",
+        "centerOfMass": "0, 0, 0",
+        "fixed": true,
+        "visibleCS": false,
+        "joint": {
+          "uuid": "240763bf-3d5e-979a-8de9-43562bc8407a",
+          "name": "my_body_A",
+          "referenceCSidFrom": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+          "typeName": "Joint"
+        },
+        "markerContainer": {
+          "uuid": "5cb7ba63-afb4-04bc-5077-11c27daea8c6",
+          "parentUuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+          "objects": [
+            {
+              "uuid": "52be9780-b0a9-e2ae-d733-7b973ce4b440",
+              "translation": "8, -8, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+              "name": "markerDA_A",
+              "referenceCSID": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+              "typeName": "Marker"
+            },
+            {
+              "uuid": "4ccfca63-460e-a5fe-ca08-d38bd1f990e4",
+              "translation": "0, 0, 0",
+              "orientation": "90, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+              "name": "markerCylinderA",
+              "referenceCSID": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+              "typeName": "Marker"
+            }
+          ],
+          "name": "Markers",
+          "typeName": "MarkerContainer"
+        },
+        "geometryContainer": {
+          "uuid": "c70c1a1e-0781-1afc-d3f5-58f856781ecb",
+          "parentUuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+          "objects": [
+            {
+              "uuid": "0295462d-4005-682a-f4b7-842ada0dfc18",
+              "visible": true,
+              "radius": "2.1",
+              "height": "0.1",
+              "geometryType": "Cylinder",
+              "bodyUuid": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+              "name": "CylinderA",
+              "referenceCSID": "4ccfca63-460e-a5fe-ca08-d38bd1f990e4",
+              "typeName": "Cylinder"
+            }
+          ],
+          "name": "Geometries",
+          "typeName": "GeometryContainer"
+        },
+        "name": "my_body_A",
+        "typeName": "Body"
+      },
+      {
+        "uuid": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+        "mass": "1",
+        "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+        "translation": "0, 0, 0",
+        "orientation": "0, 0, 0",
+        "linearVel": "0, 0, 0",
+        "angularVel": "0, 0, 0",
+        "centerOfMass": "0, 0, 0",
+        "fixed": false,
+        "visibleCS": false,
+        "joint": {
+          "uuid": "8d262c27-d532-608e-6847-584fd3dfd512",
+          "name": "my_body_B",
+          "referenceCSidFrom": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+          "typeName": "Joint"
+        },
+        "markerContainer": {
+          "uuid": "5c256569-d43a-9746-bda5-e81f2c61c5ff",
+          "parentUuid": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+          "objects": [
+            {
+              "uuid": "0c351909-9295-4613-13ee-dd9a82291bac",
+              "translation": "2, 0, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+              "name": "markerBC_B",
+              "referenceCSID": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+              "typeName": "Marker"
+            }
+          ],
+          "name": "Markers",
+          "typeName": "MarkerContainer"
+        },
+        "geometryContainer": {
+          "uuid": "0ff21f5c-38c5-7707-cb13-f8357bbcb3d2",
+          "parentUuid": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+          "objects": [],
+          "name": "Geometries",
+          "typeName": "GeometryContainer"
+        },
+        "name": "my_body_B",
+        "typeName": "Body"
+      },
+      {
+        "uuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+        "mass": "1",
+        "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+        "translation": "4, 0, 0",
+        "orientation": "0, 0, 0",
+        "linearVel": "0, 0, 0",
+        "angularVel": "0, 0, 0",
+        "centerOfMass": "0, 0, 0",
+        "fixed": false,
+        "visibleCS": false,
+        "joint": {
+          "uuid": "ba6a3bb6-9ee8-408f-9459-978621a1fbf8",
+          "name": "my_body_C",
+          "referenceCSidFrom": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+          "typeName": "Joint"
+        },
+        "markerContainer": {
+          "uuid": "b8305469-9883-c3fd-6910-e13059716139",
+          "parentUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+          "objects": [
+            {
+              "uuid": "6700ba73-277d-011f-4a16-3181b75e16bc",
+              "translation": "-2, 0, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "name": "markerBC_C",
+              "referenceCSID": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "typeName": "Marker"
+            },
+            {
+              "uuid": "2c74f83a-220b-ddcc-e203-5537b696a336",
+              "translation": "4, 0, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "name": "markerCD_C",
+              "referenceCSID": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "typeName": "Marker"
+            },
+            {
+              "uuid": "90cc38c8-ae6b-c9d7-dd77-0e923ed40a16",
+              "translation": "1, 0, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "name": "markerBoxBC_CD",
+              "referenceCSID": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "typeName": "Marker"
+            }
+          ],
+          "name": "Markers",
+          "typeName": "MarkerContainer"
+        },
+        "geometryContainer": {
+          "uuid": "8394d27a-cbee-3be2-f3be-b5c766bc5dfb",
+          "parentUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+          "objects": [
+            {
+              "uuid": "b4e9108b-398c-5f41-98f2-3b7a5af08593",
+              "visible": true,
+              "width": "6",
+              "height": "0.1",
+              "depth": "0.1",
+              "geometryType": "Box",
+              "bodyUuid": "e15b1ceb-5537-20f4-10ea-8d2dbe795625",
+              "name": "Box0",
+              "referenceCSID": "90cc38c8-ae6b-c9d7-dd77-0e923ed40a16",
+              "typeName": "Box"
+            }
+          ],
+          "name": "Geometries",
+          "typeName": "GeometryContainer"
+        },
+        "name": "my_body_C",
+        "typeName": "Body"
+      },
+      {
+        "uuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+        "mass": "1",
+        "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+        "translation": "8, -4, 0",
+        "orientation": "0, 0, 0",
+        "linearVel": "0, 0, 0",
+        "angularVel": "0, 0, 0",
+        "centerOfMass": "0, 0, 0",
+        "fixed": false,
+        "visibleCS": false,
+        "joint": {
+          "uuid": "49f2c557-5ba6-f4fb-0257-7d8a43639964",
+          "name": "my_body_D",
+          "referenceCSidFrom": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+          "typeName": "Joint"
+        },
+        "markerContainer": {
+          "uuid": "7dba99e2-dfc8-d21e-a149-6f8d2f6a72a0",
+          "parentUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+          "objects": [
+            {
+              "uuid": "08edb4f7-62a4-cf66-a327-fdad1a4978a8",
+              "translation": "0, 4, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "name": "markerCD_D",
+              "referenceCSID": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "typeName": "Marker"
+            },
+            {
+              "uuid": "46d235fb-6ce3-df49-8e78-d1bc01c72863",
+              "translation": "0, -4, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "name": "markerDA_D",
+              "referenceCSID": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "typeName": "Marker"
+            },
+            {
+              "uuid": "f2a9c07e-cda0-8fa7-e36e-44ab8aa7bc25",
+              "translation": "0, 0, 0",
+              "orientation": "0, 0, 0",
+              "visibleCS": false,
+              "bodyUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "name": "markerBoxBC_CD",
+              "referenceCSID": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "typeName": "Marker"
+            }
+          ],
+          "name": "Markers",
+          "typeName": "MarkerContainer"
+        },
+        "geometryContainer": {
+          "uuid": "50e83d08-8eb7-16fb-aba0-6d50214ece40",
+          "parentUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+          "objects": [
+            {
+              "uuid": "74852596-5d78-4fc8-b302-754928faf6db",
+              "visible": true,
+              "width": "0.1",
+              "height": "8",
+              "depth": "0.1",
+              "geometryType": "Box",
+              "bodyUuid": "2d8377b8-2a0c-7e92-b3db-c69e6c2031ff",
+              "name": "Box1",
+              "referenceCSID": "f2a9c07e-cda0-8fa7-e36e-44ab8aa7bc25",
+              "typeName": "Box"
+            }
+          ],
+          "name": "Geometries",
+          "typeName": "GeometryContainer"
+        },
+        "name": "my_body_D",
+        "typeName": "Body"
+      }
+    ],
+    "name": "Bodies",
+    "typeName": "BodyContainer"
+  },
+  "linkContainer": {
+    "uuid": "83725304-a75b-e6d5-da9c-93f7123e77b6",
+    "parentUuid": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+    "objects": [
+      {
+        "uuid": "a987ee48-8192-591e-9d6a-9446bbf4586d",
+        "linkType": "Spherical",
+        "translationalDOFs": "free, free, free",
+        "rotationalDOFs": "free, free, free",
+        "name": "my_link_AB_Ball",
+        "cs1ID": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+        "cs2ID": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+        "typeName": "Link"
+      },
+      {
+        "uuid": "0de44a6d-5307-3df4-f0e0-af9d2c387ecd",
+        "linkType": "Velocity",
+        "translationalDOFs": "free, free, free",
+        "rotationalDOFs": "free, free, pi",
+        "name": "my_link_AB",
+        "cs1ID": "b3cb33a0-5122-a1a6-9450-7d48554362ba",
+        "cs2ID": "a0ace7de-2ff5-e86b-6c5c-02c85414dee8",
+        "typeName": "Link"
+      },
+      {
+        "uuid": "119476c0-fa58-ec49-f32c-06c2075f3c8c",
+        "linkType": "Revolute",
+        "translationalDOFs": "free, free, free",
+        "rotationalDOFs": "free, free, free",
+        "name": "my_link_BC",
+        "cs1ID": "0c351909-9295-4613-13ee-dd9a82291bac",
+        "cs2ID": "6700ba73-277d-011f-4a16-3181b75e16bc",
+        "typeName": "Link"
+      },
+      {
+        "uuid": "2636eb5e-1a2e-23bc-b718-694df2b63acc",
+        "linkType": "Revolute",
+        "translationalDOFs": "free, free, free",
+        "rotationalDOFs": "free, free, free",
+        "name": "my_link_CD",
+        "cs1ID": "2c74f83a-220b-ddcc-e203-5537b696a336",
+        "cs2ID": "08edb4f7-62a4-cf66-a327-fdad1a4978a8",
+        "typeName": "Link"
+      },
+      {
+        "uuid": "609f5eed-1a48-a8a7-e17e-9c19d2c92b36",
+        "linkType": "Revolute",
+        "translationalDOFs": "free, free, free",
+        "rotationalDOFs": "free, free, free",
+        "name": "my_link_DA",
+        "cs1ID": "46d235fb-6ce3-df49-8e78-d1bc01c72863",
+        "cs2ID": "52be9780-b0a9-e2ae-d733-7b973ce4b440",
+        "typeName": "Link"
+      }
+    ],
+    "name": "Links",
+    "typeName": "LinkContainer"
+  },
+  "functionContainer": {
+    "uuid": "124413a2-4dac-2112-e2f0-63e10a7e5c01",
+    "parentUuid": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+    "objects": [],
+    "name": "Functions",
+    "typeName": "FunctionContainer"
+  },
+  "forceContainer": {
+    "uuid": "22d1ccd4-8856-55c7-8156-ac15db5bc411",
+    "parentUuid": "b1ed0951-0e39-79b4-e18d-c5677c4320f5",
+    "objects": [],
+    "name": "Forces",
+    "typeName": "ForceContainer"
+  },
+  "name": "FourBar",
+  "typeName": "CAEModel"
+}

@@ -1,0 +1,158 @@
+{
+    "uuid": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+    "visibleCS": false,
+    "buildParams": {
+        "uuid": "a7729621-6d83-58e4-dedf-71d74627e3b2",
+        "BuidHash": "cb3c3d8",
+        "BuildVersion": "0.0.3",
+        "LastSaveDate": "2018-08-30, 7:45:08 PM",
+        "name": "Build Parameters",
+        "typeName": "BuildParams"
+    },
+    "modelParams": {
+        "uuid": "7ca1e9ac-e737-1c3b-59b5-981bc245ebb5",
+        "gravity": "0, 0, 0",
+        "startTime": "0",
+        "endTime": "20",
+        "integratorStepSize": "0.01",
+        "outputStepSize": "0.1",
+        "name": "Pendulum",
+        "typeName": "ModelParams"
+    },
+    "bodyContainer": {
+        "uuid": "94c7789f-9844-32a5-6409-155b8bda6173",
+        "parentUuid": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+        "objects": [
+            {
+                "uuid": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                "mass": "1",
+                "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+                "translation": "0, 0, 0",
+                "orientation": "0, 0, 0",
+                "linearVel": "0, 0, 0",
+                "angularVel": "0, 0, 0",
+                "centerOfMass": "0, 0, 0",
+                "fixed": true,
+                "visibleCS": false,
+                "joint": {
+                    "uuid": "89577e61-2af3-8b2e-84b8-0addcc64d4e0",
+                    "name": "Ground",
+                    "referenceCSidFrom": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+                    "typeName": "Joint"
+                },
+                "markerContainer": {
+                    "uuid": "6d13fdce-6e9b-f826-bbb2-7f50d2c08ae4",
+                    "parentUuid": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                    "objects": [],
+                    "name": "Markers",
+                    "typeName": "MarkerContainer"
+                },
+                "geometryContainer": {
+                    "uuid": "70834bf1-99bf-55db-5319-c18f193336a3",
+                    "parentUuid": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                    "objects": [
+                        {
+                            "uuid": "718e6a91-ece1-fc52-3256-3aea41336b7e",
+                            "visible": true,
+                            "radius": "2.1",
+                            "height": "0.1",
+                            "geometryType": "Cylinder",
+                            "bodyUuid": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                            "name": "CylinderA",
+                            "referenceCSID": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                            "typeName": "Cylinder"
+                        }
+                    ],
+                    "name": "Geometries",
+                    "typeName": "GeometryContainer"
+                },
+                "name": "Ground",
+                "typeName": "Body"
+            },
+            {
+                "uuid": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                "mass": "1",
+                "inertia": "1, 0, 0; 0, 1, 0; 0, 0, 1",
+                "translation": "10, 0, 0",
+                "orientation": "0, 0, 0",
+                "linearVel": "0, 0, 0",
+                "angularVel": "0, 0, 0",
+                "centerOfMass": "0, 0, 0",
+                "fixed": false,
+                "visibleCS": false,
+                "joint": {
+                    "uuid": "d9d6b855-05c7-6e48-2ad8-2c5e262f3ab9",
+                    "name": "Body",
+                    "referenceCSidFrom": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+                    "typeName": "Joint"
+                },
+                "markerContainer": {
+                    "uuid": "89a16902-4c31-9606-2b1c-261f5293db0f",
+                    "parentUuid": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                    "objects": [],
+                    "name": "Markers",
+                    "typeName": "MarkerContainer"
+                },
+                "geometryContainer": {
+                    "uuid": "66306dac-ef66-64de-e3b6-9f93c43c13a7",
+                    "parentUuid": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                    "objects": [
+                        {
+                            "uuid": "d36ad252-3f0a-4ea3-1957-af6b097a8cd5",
+                            "visible": true,
+                            "width": "1",
+                            "height": "1",
+                            "depth": "1",
+                            "geometryType": "Box",
+                            "bodyUuid": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                            "name": "Box 1",
+                            "referenceCSID": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                            "typeName": "Box"
+                        }
+                    ],
+                    "name": "Geometries",
+                    "typeName": "GeometryContainer"
+                },
+                "name": "Body",
+                "typeName": "Body"
+            }
+        ],
+        "name": "Bodies",
+        "typeName": "BodyContainer"
+    },
+    "linkContainer": {
+        "uuid": "c0c0d3f4-b463-a264-e985-8bbaaafdc968",
+        "parentUuid": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+        "objects": [],
+        "name": "Links",
+        "typeName": "LinkContainer"
+    },
+    "functionContainer": {
+        "uuid": "8faccf23-4b2e-2814-1228-23b2dc68f204",
+        "parentUuid": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+        "objects": [],
+        "name": "Functions",
+        "typeName": "FunctionContainer"
+    },
+    "forceContainer": {
+        "uuid": "c201a8a8-2f2a-247e-65ee-409c0cbf2c6d",
+        "parentUuid": "3da4bba3-4cda-de8b-ccc7-980d86deb399",
+        "objects": [
+            {
+                "uuid": "2aa14d1b-a629-55a7-9094-39f80b22182e",
+                "stiffness": "20",
+                "damping": "0.5",
+                "restLength": "5",
+                "forceType": "Spring force",
+                "name": "Spring force",
+                "cs1ID": "ebd3adc9-99ce-7dd6-aa1e-40f161bfdf88",
+                "cs2ID": "7c8d17e5-1791-50a2-2b2a-ffd10cf5572b",
+                "typeName": "SpringForce"
+            }
+        ],
+        "name": "Forces",
+        "typeName": "ForceContainer"
+    },
+    "name": "Model Four Bar with Forces",
+    "typeName": "CAEModel"
+}
