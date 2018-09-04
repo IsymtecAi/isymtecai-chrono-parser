@@ -42,7 +42,7 @@ public:
 		const std::string& filename  ///< [in] isymtec.ai MBS input file name
 	);
 
-	std::shared_ptr<ChSimulationParameters> getSimulationParameters() const { return m_SimulationParameters; }
+	std::shared_ptr<ChSimulationParameters> GetSimulationParameters() const { return m_SimulationParameters; }
 
 	std::shared_ptr<ChFunctionStorage> GetFunctionStorage() const { return m_FunctionStorage; };
 

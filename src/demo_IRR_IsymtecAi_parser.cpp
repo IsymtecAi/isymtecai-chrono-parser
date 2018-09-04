@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	animate(system, parser->getSimulationParameters());
+	animate(system, parser->GetSimulationParameters());
 
     return 0;
 }

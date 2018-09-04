@@ -1,3 +1,4 @@
+#include "ChSimulationIsymtecAi.h"
 
 #include "parser_isymtec_ai/ChSimulationIsymtecAi.h"
 #include "parser_isymtec_ai/ChParserIsymtecAi.h"
@@ -34,24 +35,12 @@ void ChSimulationIsymtecAi::Simulate() {
 	ProcessOutputTimeStep();
 }
 
-//
-//void ChSimulationIsymtecAI::SaveData() {
-//	m_Time.push_back(m_system->GetChTime());
-//	auto body2 = m_system->Get_bodylist()[2];
-//	m_Coor1.push_back(body2->GetPos().x());
-//}
-//
-//void ChSimulationIsymtecAI::WriteData(const std::string& filename)
-//{
-//	utils::CSV_writer csv(" ");
-//
-//	for (size_t it = 0; it < m_Time.size(); ++it) {
-//		csv << m_Time[it] << m_Coor1[it] << std::endl;
-//	}
-//	csv.write_to_file(filename);
-//}
-
 std::shared_ptr<ChSimulationParameters> ChSimulationIsymtecAi::GetSimulationParameters() const { 
-	auto output = m_Parser->getSimulationParameters();
+	auto output = m_Parser->GetSimulationParameters();
 	return output;
+}
+
+void ChSimulationIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
+	marchive << CHNVP(m_System);
+	marchive << CHNVP(GetSimulationParameters(), "SimulationParameters");
 }

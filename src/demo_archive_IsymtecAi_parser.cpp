@@ -49,9 +49,9 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	simulation.Simulate();
+	//simulation.Simulate();
 
-
+	
 	const std::string out_dir = GetChronoOutputPath() + "DEMO_ARCHIVE";
 	if (ChFileutils::MakeDirectory(out_dir.c_str()) < 0) {
 		std::cout << "Error creating directory " << out_dir << std::endl;
@@ -67,5 +67,6 @@ int main(int argc, char* argv[]) {
 
 	auto system = simulation.GetSystem();
 
-	marchiveout << CHNVP(system, "system");  // store data n.1      
+	marchiveout << CHNVP(simulation, "simulation");
+	//marchiveout << CHNVP(system, "system");  
 }

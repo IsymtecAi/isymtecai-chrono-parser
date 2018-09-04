@@ -47,9 +47,12 @@ void ChLinkParserIsymtecAi::doParseObject() {
 	}
 
 	auto links = CreateLinks();
-	for (auto link : links) {
+	for (size_t i = 0; i < links.size(); i++)	{
+		auto link = links[i];
 		getRelations().GetSystem()->AddLink(link);
+		isymtec_ai_utils::SetObjectName(getObjectFrom(), *link, "_" + std::to_string(i));
 	}
+
 }
 
 std::shared_ptr<chrono::ChBody> ChLinkParserIsymtecAi::GetBody1() const
@@ -217,7 +220,6 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateLinks(
 		return {};
 	}
 	output->Initialize(m_Marker1, m_Marker2);
-	isymtec_ai_utils::SetObjectName(getObjectFrom(), *output);
 	return { output };
 }
 

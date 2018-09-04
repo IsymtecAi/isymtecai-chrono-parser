@@ -10,6 +10,7 @@ class ChParserIsymtecAi;
 
 namespace chrono {
 	class ChSystemSMC;
+	class ChArchiveOut;
 }
 
 /// @addtogroup parser_isymtec_ai
@@ -28,6 +29,10 @@ class ChApiIsymtecAI ChSimulationIsymtecAi {
 
 	  ///function called after every output time step
 	  virtual void ProcessOutputTimeStep() const = 0;
+
+	  /// Method to allow serialization of transient data to archives.
+	  virtual void ArchiveOUT(chrono::ChArchiveOut& marchive);
+
 private:
 	std::shared_ptr<chrono::ChSystemSMC> m_System;
 	std::shared_ptr<ChParserIsymtecAi> m_Parser;

@@ -35,6 +35,10 @@ public:
 	void SetOutputStepSize(double val) { m_OutputStepSize = val; }
 
 	virtual ChSimulationParameters* Clone() const override { return new ChSimulationParameters(*this); };
+
+	/// Method to allow serialization of transient data to archives.
+	virtual void ArchiveOUT(chrono::ChArchiveOut& marchive) override;
+
 private:
 	double m_EndTime{ 0.0 };
 	double m_IntegratorStepSize{ 0.0 };
