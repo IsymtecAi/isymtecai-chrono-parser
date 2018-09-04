@@ -1,19 +1,10 @@
 // =============================================================================
-// PROJECT CHRONO - http://projectchrono.org
-//
-// Copyright (c) 2014 projectchrono.org
-// All rights reserved.
-//
-// Use of this source code is governed by a BSD-style license that can be found
-// in the LICENSE file at the top level of the distribution and at
-// http://projectchrono.org/license-chrono.txt.
-//
 // =============================================================================
 // Authors: Dmitry Vlasenko
 // =============================================================================
-//
 // Demo for the IsymtecAi -> Chrono parser
-//
+// Parse the input file and animate the generated chrono model. If not input file defined, animates isymtecAi/test_fourbar.isym
+///from data folder
 // =============================================================================
 
 
@@ -21,7 +12,6 @@
 #include "chrono/utils/ChUtilsValidation.h"
 #include "chrono/utils/ChUtilsInputOutput.h"
 
-//
 #include <cassert>
 #include "physics/ChGlobal.h"
 #include "physics/ChSystemSMC.h"
@@ -29,9 +19,6 @@
 #include "parser_isymtec_ai/ChSimulationParameters.h"
 #include "parser_isymtec_ai/ChIsymtecAiConstants.h"
 
-//#include <cmath>
-//#include <functional>
-//
 using namespace chrono;
 using namespace chrono::irrlicht;
 using namespace irr;
@@ -89,11 +76,6 @@ int main(int argc, char* argv[]) {
         filename = "isymtecAi/test_fourbar.isym";
 		filename = isymtec_ai_constants::ISYMTEC_DATA_PATH + filename;
     }
-
-	//ChSimulationIsymtecAI simulation;
-	//simulation.Parse(filename);
-	//simulation.Simulate();
-	//simulation.WriteData(filename + ".out");
 
 	auto parser = std::make_shared<ChParserIsymtecAi>();
 	auto system = std::make_shared<ChSystemSMC>();

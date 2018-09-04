@@ -19,9 +19,6 @@ if (ENABLE_MODULE_IRRLICHT)
 
 add_executable(demo_IRR_IsymtecAi_parser demo_IRR_IsymtecAi_parser.cpp)
 
-
-#add_executable(demo_IRR_IsymtecAi_parser my_example.cpp)
-
 #--------------------------------------------------------------
 # Set properties for your executable target
 # 
@@ -42,3 +39,20 @@ set_target_properties(demo_IRR_IsymtecAi_parser PROPERTIES
 
 target_link_libraries(demo_IRR_IsymtecAi_parser IsymtecAi_parser muparser ${CHRONO_LIBRARIES})
 endif(ENABLE_MODULE_IRRLICHT)
+
+
+###demo_archive_IsymtecAi_parser
+
+add_executable(demo_archive_IsymtecAi_parser demo_archive_IsymtecAi_parser.cpp)
+
+
+set_target_properties(demo_archive_IsymtecAi_parser PROPERTIES 
+	    COMPILE_FLAGS "${CHRONO_CXX_FLAGS} ${EXTRA_COMPILE_FLAGS}"
+	    COMPILE_DEFINITIONS "CHRONO_DATA_DIR=\"${CHRONO_DATA_DIR}\""
+	    LINK_FLAGS "${CHRONO_LINKER_FLAGS}")
+
+#--------------------------------------------------------------
+# Link to Chrono libraries and dependency libraries
+#--------------------------------------------------------------
+
+target_link_libraries(demo_archive_IsymtecAi_parser IsymtecAi_parser muparser ${CHRONO_LIBRARIES})
