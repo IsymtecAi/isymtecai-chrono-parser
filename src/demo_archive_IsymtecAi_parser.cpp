@@ -1,3 +1,11 @@
+// =============================================================================
+// =============================================================================
+// Authors: Dmitry Vlasenko
+// =============================================================================
+// Serialization Demo for the Mbs.Isymtec.Ai  Chrono parser
+// Parse the input file, simulates it and  and write the serialized model in 
+///demo_archive_IsymtecAi_parser.json file
+// =============================================================================
 
 #include "chrono/utils/ChUtilsValidation.h"
 #include "chrono/utils/ChUtilsInputOutput.h"
@@ -50,7 +58,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	std::string jsonfile = out_dir + "/foo_archive.json";
+	std::string jsonfile = out_dir + "/demo_archive_IsymtecAi_parser.json";
 	ChStreamOutAsciiFile mfileo(jsonfile.c_str());
 
 	// Use a JSON archive object to serialize C++ objects into the file

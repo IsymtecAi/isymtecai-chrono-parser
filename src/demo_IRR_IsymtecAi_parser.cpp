@@ -2,9 +2,8 @@
 // =============================================================================
 // Authors: Dmitry Vlasenko
 // =============================================================================
-// Demo for the IsymtecAi -> Chrono parser
-// Parse the input file and animate the generated chrono model. If not input file defined, animates isymtecAi/test_fourbar.isym
-///from data folder
+// Animation demo for the Mbs.Isymtec.Ai  Chrono parser
+// Parse the input file and animate the generated chrono model. 
 // =============================================================================
 
 
