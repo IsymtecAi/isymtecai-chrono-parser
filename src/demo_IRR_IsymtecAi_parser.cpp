@@ -73,14 +73,18 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         filename = std::string(argv[1]);
     } else {
-        filename = "isymtecAi/test_fourbar.isym";
-		filename = isymtec_ai_constants::ISYMTEC_DATA_PATH + filename;
+		std::cout << "no input filename!!!";
+		return -1;
     }
 
 	auto parser = std::make_shared<ChParserIsymtecAi>();
 	auto system = std::make_shared<ChSystemSMC>();
 	bool isParsed = parser->Parse(system, filename);
-	assert(isParsed);
+	
+	if (!isParsed) {
+		std::cout << "Can't parse the file " + filename;
+		return -1;
+	}
 
 	animate(system, parser->getSimulationParameters());
 

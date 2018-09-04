@@ -36,6 +36,11 @@ int main(int argc, char* argv[]) {
 	ChSimulationDemo simulation;
 	bool parseOk = simulation.Parse(filename);
 
+	if (!parseOk) {
+		std::cout << "Can't parse the file " + filename;
+		return -1;
+	}
+
 	simulation.Simulate();
 
 
@@ -52,7 +57,7 @@ int main(int argc, char* argv[]) {
 	ChArchiveOutJSON marchiveout(mfileo);
 
 
-	auto& system = simulation.GetSystem();
+	auto system = simulation.GetSystem();
 
 	marchiveout << CHNVP(system, "system");  // store data n.1      
 }

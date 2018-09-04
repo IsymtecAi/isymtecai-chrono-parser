@@ -156,7 +156,13 @@ add_DLL_copy_command("${CHRONO_DLLS}")
 # Install data directory 
 # Install sample template_project
 #------------------------------------------------------------
-file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CMAKE_BINARY_DIR}/data/)
+if(MSVC OR XCODE_VERSION)
+	set(TEST_DATA_DIRECTORY  ${CMAKE_BINARY_DIR}/bin/data/)
+else()
+	set(TEST_DATA_DIRECTORY  ${CMAKE_BINARY_DIR}/data/)
+endif()
+file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${TEST_DATA_DIRECTORY})
+
 
 #------------------------------------------------------------
 # Defer configuration of all Chrono libraries and programs

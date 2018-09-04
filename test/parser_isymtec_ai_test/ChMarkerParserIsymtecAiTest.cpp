@@ -340,7 +340,7 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor2) {
 	setStringMember(*marker2, PROPERTY_ORIENTATION, relOrientMarker2, GetAllocator());
 	getJsonMarkersArr().PushBack(*marker2, GetAllocator());
 
-	writeInFile(*m_Document, "output.json");
+	//writeInFile(*m_Document, "output.json");
 
 	m_MarkerParser->ParseBodyMarkers(*m_BodyFrom);
 	auto& markerlist = m_Body->GetMarkerList();
