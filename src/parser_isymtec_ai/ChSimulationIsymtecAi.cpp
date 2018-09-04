@@ -43,4 +43,6 @@ std::shared_ptr<ChSimulationParameters> ChSimulationIsymtecAi::GetSimulationPara
 void ChSimulationIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
 	marchive << CHNVP(m_System);
 	marchive << CHNVP(GetSimulationParameters(), "SimulationParameters");
+
+	marchive << CHNVP(m_Parser, "Parser");
 }

@@ -11,6 +11,7 @@
 
 namespace chrono {
 	class ChSystem;
+	class ChArchiveOut;
 }
 
 class ChSimulationParameters;
@@ -46,6 +47,10 @@ public:
 
 	std::shared_ptr<ChFunctionStorage> GetFunctionStorage() const { return m_FunctionStorage; };
 
+	const std::shared_ptr<ChRelationsIsymtecAi> GetRelations() const { return m_Relations; };
+
+	/// Method to allow serialization of transient data to archives.
+	virtual void ArchiveOUT(chrono::ChArchiveOut& marchive) ;
 private:
 	void CatchParserException(const ChExceptionIsymtecAi& parserException) const;
 
@@ -59,7 +64,7 @@ private:
 	void CreateFunctions();
 	void CreateForces();
 
-
+	std::string m_FileName;
 	std::shared_ptr<rapidjson::Document> m_Document;
 	std::shared_ptr<chrono::ChSystem> m_System;
 	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;

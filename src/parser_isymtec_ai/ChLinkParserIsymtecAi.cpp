@@ -51,6 +51,7 @@ void ChLinkParserIsymtecAi::doParseObject() {
 		auto link = links[i];
 		getRelations().GetSystem()->AddLink(link);
 		isymtec_ai_utils::SetObjectName(getObjectFrom(), *link, "_" + std::to_string(i));
+		AddRelation(link);
 	}
 
 }

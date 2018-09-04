@@ -13,6 +13,7 @@
 namespace chrono {
 	class ChObj;
 	class ChSystem;
+	class ChArchiveOut;
 }
 
 /// @addtogroup parser_isymtec_ai
@@ -52,6 +53,7 @@ class ChApiIsymtecAI ChRelationsIsymtecAi {
 		  return output;
 	  }
 
+	  void ArchiveOUT(chrono::ChArchiveOut& marchive);
 private:
 	std::string getUUid(rapidjson::Value& objFrom) const;
 

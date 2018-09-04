@@ -64,12 +64,13 @@ bool ChParserIsymtecAi::Parse(std::shared_ptr<ChSystem> system,
 	const std::string& filename)
 {
 	try {
+		m_FileName = filename;
 		m_System = system;
 		m_Relations = std::make_shared<ChRelationsIsymtecAi>();
 		m_Relations->Clear();
 		m_Relations->SetSystem(m_System);
 
-		m_Document = CreateDocument(filename);
+		m_Document = CreateDocument(m_FileName);
 		CreateFunctions();
 		SetModelParams();
 		CreateBodies();
@@ -96,6 +97,11 @@ bool ChParserIsymtecAi::Parse(std::shared_ptr<ChSystem> system,
 
 }
 
+
+void ChParserIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
+	//marchive << CHNVP(m_FileName, "fileName");
+	marchive << CHNVP(m_Relations, "Relations");
+}
 
 void ChParserIsymtecAi::CatchParserException(const ChExceptionIsymtecAi& parserException) const {
 	
