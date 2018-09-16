@@ -59,5 +59,6 @@ std::shared_ptr<RAPIDJSON_NAMESPACE::Value> parser_test_utils::createDummyObject
 	auto objFrom = std::make_shared<Value >(rapidjson::kObjectType);
 	addStringMember(*objFrom, isymtec_ai_utils::PROPERTY_UUID, objectName + "_UUD", curAllocator);
 	addStringMember(*objFrom, isymtec_ai_utils::PROPERTY_NAME, objectName, curAllocator);
+	addStringMember(*objFrom, isymtec_ai_utils::PROPERTY_TYPE, objectName + "_type", curAllocator);
 	return objFrom;
 }

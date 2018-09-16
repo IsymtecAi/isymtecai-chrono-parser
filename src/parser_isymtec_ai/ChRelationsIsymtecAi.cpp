@@ -19,7 +19,10 @@ void ChRelationsIsymtecAi::AddRelation(rapidjson::Value& objFrom, std::shared_pt
 	if (it == m_GeneratedObjs.end()) {
 		//std::vector< std::shared_ptr<ChObj> > newVec;
 		m_GeneratedObjs[uuid] = {};
+		std::string type = isymtec_ai_utils::GetStringProperty(objFrom, isymtec_ai_utils::PROPERTY_TYPE);
+		m_GuiTypes[uuid] = type;
 	}
+
 	m_GeneratedObjs[uuid].push_back(generatedObject);
 }
 
@@ -42,6 +45,35 @@ void ChRelationsIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
 		marchive << CHNVP(relationEntry, "Entry");
 	}
 }
+
+std::string ChRelationsIsymtecAi::getGuiType(const std::string & uuid) const
+{
+	auto it = m_GuiTypes.find(uuid);
+	if (it == m_GuiTypes.end()) {
+		throw chrono::ChException("ChRelationsIsymtecAi::getGuiType error. Element with UUid " + uuid + " is not in not added in ChRelationsIsymtecAi!!!");
+	}
+	std::string output = it->second;
+	return output;
+}
+
+std::vector<std::string> ChRelationsIsymtecAi::getUUids() const
+{
+	std::vector< std::string> output;
+	for (auto& curPair : m_GeneratedObjs) {
+		output.push_back(curPair.first);
+	}
+	return output;
+}
+
+const std::vector<std::shared_ptr<chrono::ChObj>>& ChRelationsIsymtecAi::getGeneratedOjbects(const std::string & uuid) const
+{
+	auto it = m_GeneratedObjs.find(uuid);
+	if (it == m_GeneratedObjs.end()) {
+		throw chrono::ChException("ChRelationsIsymtecAi::getGeneratedOjbects error. Element with UUid " + uuid + " is not in not added in ChRelationsIsymtecAi!!!");
+	}
+	return it->second;
+}
+
 
 std::string ChRelationsIsymtecAi::getUUid(rapidjson::Value& objFrom) const
 {

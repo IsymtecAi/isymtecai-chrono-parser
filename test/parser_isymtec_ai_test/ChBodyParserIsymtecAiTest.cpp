@@ -17,8 +17,10 @@ namespace {
 	std::shared_ptr<Value> createDummyBodyFrom(Document& document) {
 		using namespace body_isymtec_ai_params;
 		Document::AllocatorType& curAllocator = document.GetAllocator();
-		auto bodyFrom = std::make_shared<Value >(rapidjson::kObjectType);
-		addStringMember(*bodyFrom, isymtec_ai_utils::PROPERTY_UUID, "Body_UUD", curAllocator);
+		//auto bodyFrom = std::make_shared<Value >(rapidjson::kObjectType);
+		auto bodyFrom = createDummyObject("Body", curAllocator);
+
+		
 		addStringMember(*bodyFrom, PROPERTY_MASS, "1", curAllocator);
 		addStringMember(*bodyFrom, PROPERTY_CENTER_OF_MASS, "0, 0, 0", curAllocator);
 		addStringMember(*bodyFrom, PROPERTY_INERTIA, "1, 0, 0; 0, 1, 0; 0, 0, 1", curAllocator);

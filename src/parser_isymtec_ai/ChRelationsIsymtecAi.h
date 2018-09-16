@@ -54,11 +54,21 @@ class ChApiIsymtecAI ChRelationsIsymtecAi {
 	  }
 
 	  void ArchiveOUT(chrono::ChArchiveOut& marchive);
+
+	  std::string getGuiType(const std::string& uuid) const;
+
+	  ///return uuids of all generated elements
+	  std::vector<std::string> getUUids() const;
+
+	  const std::vector<std::shared_ptr<chrono::ChObj>>& getGeneratedOjbects(const std::string& uuid) const;
+
 private:
 	std::string getUUid(rapidjson::Value& objFrom) const;
 
 	std::map<std::string, std::vector<std::shared_ptr<chrono::ChObj>> > m_GeneratedObjs;
-
+	
+	//key - uuid, value - typenema
+	std::map<std::string, std::string> m_GuiTypes;
 
 
 	std::shared_ptr<chrono::ChSystem> m_System;
