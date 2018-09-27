@@ -9,11 +9,11 @@
 # 
 #--------------------------------------------------------------
  
-
 cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 #--------------------------------------------------------------
 # === 1 === 
@@ -23,6 +23,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(ChronoIsymtecAiParser)
 
 include(CTest)
+
 
 #--------------------------------------------------------------
 # === 2 ===
@@ -81,6 +82,7 @@ if (NOT Chrono_FOUND)
   return()
 endif()
 
+
 #--------------------------------------------------------------
 # Enable creation of "application bundles" on MacOSX.
 #--------------------------------------------------------------
@@ -98,6 +100,7 @@ if(APPLE)
     set(CMAKE_MACOSX_BUNDLE ON)
 endif()
 
+
 #--------------------------------------------------------------
 # Add path to Chrono headers and to headers of all dependencies
 # of the requested modules.
@@ -107,8 +110,20 @@ include_directories(${CHRONO_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 #--------------------------------------------------------------
+# Enable Multiprocessor-Compilation for MSVC solution
+#--------------------------------------------------------------
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    if(MSVC)
+        add_definitions( "-MP" )
+    endif(MSVC)
+endif()
+
+
+#--------------------------------------------------------------
 # Tweaks to disable some warnings with MSVC
 #--------------------------------------------------------------
+
 if(MSVC)
     add_definitions("-D_CRT_SECURE_NO_DEPRECATE")  # avoids deprecation warnings
     add_definitions("-D_SCL_SECURE_NO_DEPRECATE")  # avoids deprecation warnings
@@ -118,8 +133,6 @@ else()
     set(EXTRA_COMPILE_FLAGS "")
 endif()
 
-	
-	
 
 #--------------------------------------------------------------
 # === 4 (OPTIONAL) ===
