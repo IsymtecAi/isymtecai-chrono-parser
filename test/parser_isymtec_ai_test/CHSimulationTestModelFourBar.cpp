@@ -45,8 +45,8 @@ TEST_F(ChSimulationFourBarTest, Test0) {
 	simulation.Simulate();
 
 	auto& timeVec = simulation.m_Time;
-	EXPECT_NEAR(double(timeVec.size()), 51, 5); // = simulation time / sizeOutputstep + 1 (can be less, if integrator timestep is too big)
-	EXPECT_NEAR(timeVec.back(), 5, 10E-7);
+	EXPECT_NEAR(double(timeVec.size()), 51, 2); // = simulation time / sizeOutputstep + 1 (can be less, if integrator timestep is too big)
+	EXPECT_NEAR(timeVec.back(), 5, 0.01);
 
 	auto& angularVel = simulation.m_AngularVelocityLocBodyB;
 	EXPECT_EQ(angularVel.size(), timeVec.size());

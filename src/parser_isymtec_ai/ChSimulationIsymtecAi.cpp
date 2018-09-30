@@ -20,8 +20,8 @@ bool ChSimulationIsymtecAi::Parse(const std::string& filename)
 
 
 void ChSimulationIsymtecAi::Simulate() {
+	m_System->DoFullAssembly();
 	double endTime = GetSimulationParameters()->GetEndTime();
-	m_System->DoStepDynamics(1E-10);
 	double integratorStepSize = GetSimulationParameters()->GetIntegratorStepSize();
 	double outputStepSize = GetSimulationParameters()->GetOutputStepSize();
 	double lastWrittenStep = m_System->GetChTime() - outputStepSize * 2;
