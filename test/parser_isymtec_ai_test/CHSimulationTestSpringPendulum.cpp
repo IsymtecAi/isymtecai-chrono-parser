@@ -23,7 +23,6 @@ namespace {
 
 // The fixture for testing class Foo.
 class ChSimulationSpringPendulumTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChSimulationSpringPendulumTest() {
@@ -31,9 +30,7 @@ protected:
 
 	// You can do clean-up work that doesn't throw exceptions here.
 	virtual ~ChSimulationSpringPendulumTest() {};
-
 };
-
 
 TEST_F(ChSimulationSpringPendulumTest, Test0) {
 	ChSimulationSpringPendulum simulation;

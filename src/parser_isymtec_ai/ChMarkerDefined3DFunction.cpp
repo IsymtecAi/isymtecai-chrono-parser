@@ -1,15 +1,12 @@
-
 #include "parser_isymtec_ai/ChMarkerDefined3DFunction.h"
 #include "physics/ChObject.h"
 #include "chrono/physics/ChMarker.h"
 
 using namespace chrono;
 
-
-
-ChMarkerDefined3DFunction::ChMarkerDefined3DFunction(std::shared_ptr<chrono::ChMarker> marker):
-	m_Marker {marker}
-{	
+ChMarkerDefined3DFunction::ChMarkerDefined3DFunction(std::shared_ptr<chrono::ChMarker> marker) :
+	m_Marker{ marker }
+{
 }
 
 ChMarkerDefined3DFunction * ChMarkerDefined3DFunction::Clone() const

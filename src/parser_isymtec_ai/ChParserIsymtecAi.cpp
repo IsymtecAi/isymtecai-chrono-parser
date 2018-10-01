@@ -1,5 +1,3 @@
-
-
 #include "parser_isymtec_ai/ChParserIsymtecAi.h"
 #include "core/ChException.h"
 #include "core/ChLog.h"
@@ -23,17 +21,13 @@
 
 using namespace chrono;
 
-
 namespace {
-
 	const std::string CAE_MODEL = "CAEModel";
 	const std::string BODY_CONTAINER = "bodyContainer";
 	const std::string LINK_CONTAINER = "linkContainer";
 	const std::string GEOMETRY_CONTAINER = "geometryContainer";
 	const std::string FUNCTION_CONTAINER = "functionContainer";
 	const std::string FORCE_CONTAINER = "forceContainer";
-
-
 
 	///create rapidjson::Document from the file
 	std::shared_ptr<rapidjson::Document> CreateDocument(const std::string &filename)
@@ -51,7 +45,6 @@ namespace {
 		return document;
 	}
 }
-
 
 ChParserIsymtecAi::ChParserIsymtecAi() :
 	m_System(nullptr)
@@ -94,9 +87,7 @@ bool ChParserIsymtecAi::Parse(std::shared_ptr<ChSystem> system,
 		GetLog() << "Unknown error in ChParserIsymtecAi";
 		return false;
 	}
-
 }
-
 
 void ChParserIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
 	//marchive << CHNVP(m_FileName, "fileName");
@@ -104,7 +95,6 @@ void ChParserIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
 }
 
 void ChParserIsymtecAi::CatchParserException(const ChExceptionIsymtecAi& parserException) const {
-	
 	rapidjson::Value* rapidJsonObj = parserException.getRapidJsonObject();
 	std::string objName;
 	if (rapidJsonObj != nullptr) {
@@ -131,7 +121,7 @@ void ChParserIsymtecAi::SetModelParams()
 	isymtec_ai_utils::SetObjectName(*m_Document, *m_System);
 
 	auto& modelParams = isymtec_ai_utils::GetMember(*m_Document, model_isymtec_ai_params::MODEL_PARAMS);
-	
+
 	ChVector<> gravityAccel = isymtec_ai_utils::getVectorProperty(modelParams, model_isymtec_ai_params::GRAVITY);
 	m_System->Set_G_acc(gravityAccel);
 
@@ -146,7 +136,6 @@ void ChParserIsymtecAi::SetModelParams()
 
 	double outputStepSize = isymtec_ai_utils::GetDoubleProperty(modelParams, model_isymtec_ai_params::OUTPUT_STEP_SIZE);
 	m_SimulationParameters->SetOutputStepSize(outputStepSize);
-
 }
 
 void ChParserIsymtecAi::ProveIsModel()
@@ -194,7 +183,6 @@ void ChParserIsymtecAi::CreateLinks()
 	for (auto& linkFrom : links) {
 		linkParser.ParseObject(linkFrom);
 	}
-
 }
 
 void ChParserIsymtecAi::CreateFunctions() {

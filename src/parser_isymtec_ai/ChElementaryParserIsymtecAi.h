@@ -1,4 +1,3 @@
-
 #ifndef CH_ELEMENTARY_PARSER_ISYMTEC_AI_H
 #define CH_ELEMENTARY_PARSER_ISYMTEC_AI_H
 
@@ -17,9 +16,8 @@ namespace chrono {
 class ChFunctionStorage;
 class ChMarkerDefined3DFunction;
 
-
 /// @addtogroup parser_isymtec_ai
-///Abstract class, parsing parising an elementary object (Link, force, etc.) for isym.ai input file 
+///Abstract class, parsing parising an elementary object (Link, force, etc.) for isym.ai input file
 
 /// isymtec.ai Body parser
 class ChApiIsymtecAI ChElementaryParserIsymtecAi {
@@ -45,9 +43,7 @@ protected:
 
 private:
 
-
 	virtual void doParseObject() = 0;
-
 
 	rapidjson::Value* m_ObjectFrom{ nullptr };
 	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;

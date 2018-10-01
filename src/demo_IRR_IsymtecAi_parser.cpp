@@ -3,9 +3,8 @@
 // Authors: Dmitry Vlasenko
 // =============================================================================
 // Animation demo for the Mbs.Isymtec.Ai  Chrono parser
-// Parse the input file and animate the generated chrono model. 
+// Parse the input file and animate the generated chrono model.
 // =============================================================================
-
 
 #include "chrono_irrlicht/ChIrrApp.h"
 #include "chrono/utils/ChUtilsValidation.h"
@@ -49,7 +48,6 @@ void animate(std::shared_ptr <chrono::ChSystemSMC > &system, std::shared_ptr<ChS
 	IGUIStaticText* textTime =
 		application.GetIGUIEnvironment()->addStaticText(L"Time:", rect<s32>(300, 85, 400, 100), false);
 
-
 	while (application.GetDevice()->run()) {
 		application.BeginScene();
 		application.DrawAll();
@@ -64,22 +62,21 @@ void animate(std::shared_ptr <chrono::ChSystemSMC > &system, std::shared_ptr<ChS
 	}
 }
 
-
-
 int main(int argc, char* argv[]) {
-    // Get isymtecAi input file (relative to the 'data' directory)
-    std::string filename;
-    if (argc > 1) {
-        filename = std::string(argv[1]);
-    } else {
+	// Get isymtecAi input file (relative to the 'data' directory)
+	std::string filename;
+	if (argc > 1) {
+		filename = std::string(argv[1]);
+	}
+	else {
 		std::cout << "no input filename!!!";
 		return -1;
-    }
+	}
 
 	auto parser = std::make_shared<ChParserIsymtecAi>();
 	auto system = std::make_shared<ChSystemSMC>();
 	bool isParsed = parser->Parse(system, filename);
-	
+
 	if (!isParsed) {
 		std::cout << "Can't parse the file " + filename;
 		return -1;
@@ -87,5 +84,5 @@ int main(int argc, char* argv[]) {
 
 	animate(system, parser->GetSimulationParameters());
 
-    return 0;
+	return 0;
 }

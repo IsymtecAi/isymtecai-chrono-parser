@@ -1,4 +1,3 @@
-
 #ifndef CH_FUNCTION_STORAGE_H
 #define CH_FUNCTION_STORAGE_H
 
@@ -9,7 +8,6 @@
 #include <map>
 #include <vector>
 
-
 namespace chrono {
 	class ChFunction;
 }
@@ -19,20 +17,18 @@ namespace chrono {
 
 /// isymtec.ai Body parser
 class ChApiIsymtecAI ChFunctionStorage {
-  public:
-	  ChFunctionStorage() {};
-	  
-	  void Clear();
+public:
+	ChFunctionStorage() {};
 
-	  void addFunction(const std::string& functionName, std::shared_ptr<chrono::ChFunction> functionObj);
+	void Clear();
 
-	  std::shared_ptr<chrono::ChFunction> getFunction(const std::string& functionName) const;
+	void addFunction(const std::string& functionName, std::shared_ptr<chrono::ChFunction> functionObj);
+
+	std::shared_ptr<chrono::ChFunction> getFunction(const std::string& functionName) const;
 
 private:
 	///mapping function name to the function
 	std::map<std::string, std::shared_ptr<chrono::ChFunction> > m_FunctionNamesMap;
-  
 };
-
 
 #endif

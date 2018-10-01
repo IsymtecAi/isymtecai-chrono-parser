@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChMuParserFunction.h"
 #include "physics/ChObject.h"
 #include <memory>
@@ -18,7 +17,6 @@ namespace {
 		return output;
 	}
 }
-
 
 ChMuParserFunction::ChMuParserFunction()
 {
@@ -60,11 +58,9 @@ double ChMuParserFunction::Get_y_dxdx(double x) const
 	return output;
 }
 
-
-
 ChMuParserFunction* ChMuParserFunction::Clone() const
 {
-	throw chrono::ChException("Clone method of ChMuParserFunction is not implemented yet" );
+	throw chrono::ChException("Clone method of ChMuParserFunction is not implemented yet");
 	//auto* output = new ChMuParserFunction();
 	//auto& newParser = std::shared_ptr<mu::Parser>(new mu::Parser(*m_Parser));
 	//output->setParser(newParser);
@@ -79,12 +75,10 @@ void ChMuParserFunction::DefineInputVariable(std::string inputVar)
 	m_ParserValueDifDif->DefineVar(m_InputVariableName, &m_InputValue);
 }
 
-
 void ChMuParserFunction::SetExpresson(const std::string &expr)
 {
 	m_ParserValue->SetExpr(expr);
 }
-
 
 void ChMuParserFunction::SetExpressionDif(const std::string & expr) {
 	m_ParserValueDif->SetExpr(expr);

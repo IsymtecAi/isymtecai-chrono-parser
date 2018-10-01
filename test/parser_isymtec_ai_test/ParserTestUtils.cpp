@@ -34,14 +34,12 @@ void parser_test_utils::addStringMember(rapidjson::Value& objFrom, const std::st
 	objFrom.AddMember(jsonPropName, jsonValue, curAllocator);
 }
 
-
 void parser_test_utils::addIntMember(rapidjson::Value& objFrom, const std::string propertyName, int value, rapidjson::Document::AllocatorType& curAllocator)
 {
 	//rapidjson::Value jsonValue(value, curAllocator);
 	rapidjson::Value jsonPropName(propertyName.c_str(), curAllocator);
 	objFrom.AddMember(jsonPropName, value, curAllocator);
 }
-
 
 void parser_test_utils::setStringMember(Value& objFrom, const std::string propertyName, const std::string value, Document::AllocatorType& curAllocator) {
 	//objFrom.AddMember(StringRef(propertyName.c_str()), StringRef(value.c_str()), curAllocator);

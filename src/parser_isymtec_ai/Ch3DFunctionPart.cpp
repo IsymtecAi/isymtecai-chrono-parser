@@ -1,15 +1,12 @@
-
 #include "parser_isymtec_ai/Ch3DFunctionPart.h"
 #include "physics/ChObject.h"
 #include "parser_isymtec_ai/ChMarkerDefined3DFunction.h"
 
 using namespace chrono;
 
-
-
-Ch3DFunctionPart::Ch3DFunctionPart(unsigned index, std::shared_ptr<ChMarkerDefined3DFunction> function3D):
+Ch3DFunctionPart::Ch3DFunctionPart(unsigned index, std::shared_ptr<ChMarkerDefined3DFunction> function3D) :
 	m_Function3D{ function3D },
-	m_Index {index} {
+	m_Index{ index } {
 }
 
 Ch3DFunctionPart * Ch3DFunctionPart::Clone() const

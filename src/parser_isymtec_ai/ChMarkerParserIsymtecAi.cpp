@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChMarkerParserIsymtecAi.h"
 #include "chrono/physics/ChBodyAuxRef.h"
 #include "parser_isymtec_ai/ChIsymtecAiUtils.h"
@@ -17,7 +16,6 @@ ChMarkerParserIsymtecAi::ChMarkerParserIsymtecAi(std::shared_ptr<ChRelationsIsym
 {
 }
 
-
 void ChMarkerParserIsymtecAi::ParseBodyMarkers(rapidjson::Value& bodyFrom)
 {
 	m_Graph.clear();
@@ -32,14 +30,12 @@ void ChMarkerParserIsymtecAi::ParseBodyMarkers(rapidjson::Value& bodyFrom)
 	SetTreeFlagInGraphRecursively(getBodyUUID());
 	ProveAllNodesInTree();
 
-
 	const Coordsys& bodyAbsCoor = m_Body->GetFrame_REF_to_abs().coord;
 	createDependentMarkes(getBodyUUID(), bodyAbsCoor);
 }
 
 void ChMarkerParserIsymtecAi::CreateGraph()
 {
-
 	m_Graph[getBodyUUID()].m_MarkerFrom = m_BodyFrom;
 
 	auto markers = isymtec_ai_utils::GetElementsInContainer(*m_BodyFrom, MARKER_CONTAINER);
@@ -50,7 +46,6 @@ void ChMarkerParserIsymtecAi::CreateGraph()
 		auto& dependentMarkers = m_Graph[referenceCS].m_DependentMarkers;
 		dependentMarkers.push_back(uuid);
 	}
-
 }
 
 std::string ChMarkerParserIsymtecAi::getBodyUUID() const
@@ -109,8 +104,6 @@ void ChMarkerParserIsymtecAi::ProveAllNodesInTree()
 //	}
 //}
 
-
-
 void ChMarkerParserIsymtecAi::createDependentMarkes(const std::string& markerUUID, const Coordsys& parentMarkerAbsCoor)
 {
 	auto& dependentMarkers = m_Graph[markerUUID].m_DependentMarkers;
@@ -120,18 +113,17 @@ void ChMarkerParserIsymtecAi::createDependentMarkes(const std::string& markerUUI
 	}
 }
 
-
-void ChMarkerParserIsymtecAi::createMarker(rapidjson::Value& markerFrom, 
+void ChMarkerParserIsymtecAi::createMarker(rapidjson::Value& markerFrom,
 	const Coordsys& parentMarkerAbsCoor)
 {
 	ChVector<> translation = isymtec_ai_utils::getVectorProperty(markerFrom, PROPERTY_TRANSLATION);
 	ChVector<> orientation = isymtec_ai_utils::getVectorProperty(markerFrom, PROPERTY_ORIENTATION);
 	chrono::ChQuaternion<> quat = frames_utils::createQuaternionFromEulerXYZ(orientation);
-	Coordsys relCoor { translation, quat };
+	Coordsys relCoor{ translation, quat };
 
 	Coordsys absCoor = parentMarkerAbsCoor * relCoor;
 	std::string markerName = isymtec_ai_utils::GetName(markerFrom);
-	auto marker = std::make_shared<ChMarker>(markerName, m_Body.get(), ChCoordsys<>(), ChCoordsys<>(),	ChCoordsys<>());
+	auto marker = std::make_shared<ChMarker>(markerName, m_Body.get(), ChCoordsys<>(), ChCoordsys<>(), ChCoordsys<>());
 	m_Relations->AddRelation(markerFrom, marker);
 	m_Body->AddMarker(marker);
 	marker->Impose_Abs_Coord(absCoor);

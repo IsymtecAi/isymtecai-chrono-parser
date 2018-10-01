@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChBodyParserIsymtecAi.h"
 #include "chrono/physics/ChBodyAuxRef.h"
 #include "parser_isymtec_ai/ChIsymtecAiUtils.h"
@@ -7,18 +6,15 @@
 #include "core/ChQuaternion.h"
 #include "ChFramesUtils.h"
 
-
-
 using namespace body_isymtec_ai_params;
 using namespace chrono;
 
 namespace {
-
 	///compute tensor of inertia in body central frame from the inertia in body frame,
 	///assuming that body frame is parallel to the body central frame
 	ChMatrix33<> computeCentralInertia(double mass,
 		const ChVector<>& center,
-		ChMatrix33<> inertiaFrom) 
+		ChMatrix33<> inertiaFrom)
 	{
 		ChMatrix33<> inertia = inertiaFrom;
 		inertia[0][0] -= mass * (center.y() * center.y() + center.z() * center.z());
@@ -34,9 +30,6 @@ namespace {
 	}
 }
 
-
-
-
 ChBodyParserIsymtecAi::ChBodyParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations) :
 	ChElementaryParserIsymtecAi(relations)
 {
@@ -50,19 +43,19 @@ void ChBodyParserIsymtecAi::doParseObject()
 
 	isymtec_ai_utils::SetObjectName(getObjectFrom(), *m_Body);
 	getRelations().GetSystem()->AddBody(m_Body);
-	
+
 	//create zero marker, it will make parsing of geometries and links easier
 	auto marker = std::make_shared<ChMarker>(m_Body->GetName(), m_Body.get(), ChCoordsys<>(), ChCoordsys<>(), ChCoordsys<>());
 	getRelations().AddRelation(getObjectFrom(), marker);
 	m_Body->AddMarker(marker);
-	
+
 	bool fixed = isymtec_ai_utils::GetBoolProperty(getObjectFrom(), PROPERTY_FIXED);
 	m_Body->SetBodyFixed(fixed);
 
 	SetBodyCoordinates();
 	SetBodyVelocities();
 	setMassProperties();
-	
+
 	//return *m_Body;
 }
 
@@ -81,7 +74,6 @@ void ChBodyParserIsymtecAi::SetBodyVelocities() {
 	ChVector<> angularVelAbs = isymtec_ai_utils::getVectorProperty(getObjectFrom(), PROPERTY_ANGULAR_VEL);
 	m_Body->SetWvel_par(angularVelAbs);
 }
-
 
 void ChBodyParserIsymtecAi::setMassProperties()
 {

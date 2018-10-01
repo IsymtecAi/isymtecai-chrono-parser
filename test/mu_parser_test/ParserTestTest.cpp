@@ -7,11 +7,9 @@ namespace {
 	static const double E_TEST = 2.71828182845904523536;
 }
 
-
 ///quick-and dirty testing of Parser test
 
 class ParserTestTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ParserTestTest() {
@@ -19,7 +17,6 @@ protected:
 
 	// You can do clean-up work that doesn't throw exceptions here.
 	virtual ~ParserTestTest() {};
-
 };
 
 //

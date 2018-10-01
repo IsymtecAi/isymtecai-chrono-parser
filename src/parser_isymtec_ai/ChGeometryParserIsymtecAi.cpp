@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChGeometryParserIsymtecAi.h"
 #include "ChIsymtecAiUtils.h"
 #include "assets/ChVisualization.h"
@@ -7,9 +6,7 @@
 #include "physics/ChBodyAuxRef.h"
 #include "assets/ChBoxShape.h"
 
-
 using namespace chrono;
-
 
 ChGeometryParserIsymtecAi::ChGeometryParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations) :
 	ChElementaryParserIsymtecAi(relations)
@@ -29,15 +26,14 @@ void ChGeometryParserIsymtecAi::doParseObject()
 	auto generatedGeometry = CreateGeometry();
 	if (generatedGeometry != nullptr) {
 		m_Body->AddAsset(generatedGeometry);
-	}	
+	}
 }
-
 
 std::shared_ptr<chrono::ChVisualization> ChGeometryParserIsymtecAi::CreateGeometry()
 {
-	std::string geometryType = isymtec_ai_utils::GetStringProperty(getObjectFrom(), 
+	std::string geometryType = isymtec_ai_utils::GetStringProperty(getObjectFrom(),
 		geometry_isymtec_ai_params::GEOMETRY_TYPE);
-	if (geometryType == geometry_isymtec_ai_params::CYLINDER)	{
+	if (geometryType == geometry_isymtec_ai_params::CYLINDER) {
 		return CreateCylinder();
 	}
 	else if (geometryType == geometry_isymtec_ai_params::BOX) {
@@ -81,5 +77,4 @@ std::shared_ptr<chrono::ChBoxShape> ChGeometryParserIsymtecAi::CreateBox()
 	box->GetBoxGeometry().SetLengths(ChVector<>(width, height, depth));
 
 	return box;
-
 }

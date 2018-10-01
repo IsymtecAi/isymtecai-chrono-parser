@@ -14,7 +14,6 @@ using namespace parser_test_utils;
 using namespace function_isymtec_ai_params;
 
 namespace {
-
 	std::shared_ptr<Value> createFuncFrom(const std::string& name, Document::AllocatorType& curAllocator) {
 		auto output = createDummyObject(name, curAllocator);
 		addStringMember(*output, FUNC_VALUE, "0", curAllocator);
@@ -27,7 +26,6 @@ namespace {
 
 // The fixture for testing class Foo.
 class ChFunctionParserIsymtecAiTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChFunctionParserIsymtecAiTest() {
@@ -58,7 +56,7 @@ protected:
 
 ///trivial test prove if zero force is generated
 TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestZero) {
-	auto funcFrom1 = createFuncFrom("Func1",  GetAllocator());
+	auto funcFrom1 = createFuncFrom("Func1", GetAllocator());
 	double funcValueRef = 5.3;
 	setStringMember(*funcFrom1, FUNC_VALUE, std::to_string(funcValueRef), GetAllocator());
 
@@ -78,14 +76,13 @@ TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestSqrt) {
 
 	m_Parser->ParseObject(*funcFrom1);
 	auto function1 = m_Parser->getGenerateObjPtr<ChMuParserFunction>();
-	
+
 	double time{ 4.0 };
 	double funcValueRef = sqrt(time);
 
 	double funcValue{ function1->Get_y(time) };
 	EXPECT_NEAR(funcValue, funcValueRef, 1E-15);
 }
-
 
 ///test sqrt(time) function and derivative
 TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestDerivativeSqrt) {
@@ -106,14 +103,11 @@ TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestDerivativeSqrt) {
 	double funcValue{ function1->Get_y(time) };
 	EXPECT_NEAR(funcValue, funcValueRef, 1E-15);
 
-	double funcDValueRef{ 1 / sqrt(time) / 2};
-	double funcDValue { function1->Get_y_dx(time) };
+	double funcDValueRef{ 1 / sqrt(time) / 2 };
+	double funcDValue{ function1->Get_y_dx(time) };
 
 	EXPECT_NEAR(funcDValue, funcDValueRef, 1E-15);
 }
-
-
-
 
 ///test sqrt(time) function and two derivatives
 TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestTwoDerivativesSqrt) {
@@ -143,9 +137,4 @@ TEST_F(ChFunctionParserIsymtecAiTest, ParseFunctionTestTwoDerivativesSqrt) {
 	double funcDDValueRef{ -1. / 4. / time / sqrt(time) };
 	double funcDDValue{ function1->Get_y_dxdx(time) };
 	EXPECT_NEAR(funcDDValue, funcDDValueRef, 1E-15);
-
-
 }
-
-
-

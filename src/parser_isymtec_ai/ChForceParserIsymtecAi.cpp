@@ -14,8 +14,6 @@
 using namespace force_isymtec_ai_params;
 using namespace chrono;
 
-
-
 ChForceParserIsymtecAi::ChForceParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations,
 	std::shared_ptr<const ChFunctionStorage> functionStorage) :
 	ChElementaryParserIsymtecAi(relations),
@@ -49,12 +47,9 @@ namespace {
 		force.SetF_z(part2);
 		return output;
 	}
-
 }
 
-
 void ChForceParserIsymtecAi::doParseObject() {
-
 	std::string forceType = isymtec_ai_utils::GetStringProperty(getObjectFrom(),
 		force_isymtec_ai_params::FORCE_TYPE);
 	if (forceType == force_isymtec_ai_params::APPLIED_FORCE) {
@@ -64,7 +59,7 @@ void ChForceParserIsymtecAi::doParseObject() {
 		createSpringForce();
 	}
 	else {
-		throwExeption(force_isymtec_ai_params::FORCE_TYPE,	"Unknown force type " + forceType);
+		throwExeption(force_isymtec_ai_params::FORCE_TYPE, "Unknown force type " + forceType);
 	}
 }
 
@@ -79,18 +74,14 @@ const std::shared_ptr<chrono::ChMarker> ChForceParserIsymtecAi::findMarker(std::
 	return output;
 }
 
-
-
 void ChForceParserIsymtecAi::createAppliedForce() {
 	auto marker1 = findMarker(force_isymtec_ai_params::CS1_ID);
 	auto marker2 = findMarker(force_isymtec_ai_params::CS2_ID);
-
 
 	auto force = generateAppliedForce(marker1, ChForce::FORCE);
 	AddRelation(force);
 	auto func3DForce = add3DFunctions(*force, marker2);
 	setAppliedForceInputs(*func3DForce, applied_force_isymtec_ai_params::FORCE_VALUE);
-	
 
 	auto torque = generateAppliedForce(marker1, ChForce::TORQUE);
 	AddRelation(torque);
@@ -104,7 +95,6 @@ std::shared_ptr<chrono::ChBody> ChForceParserIsymtecAi::GetBody(const chrono::Ch
 	auto output = getRelations().GetSystem()->SearchBody(bodyPtr->GetName());
 	return output;
 }
-
 
 void ChForceParserIsymtecAi::createSpringForce() {
 	auto marker1 = findMarker(force_isymtec_ai_params::CS1_ID);
@@ -123,7 +113,6 @@ void ChForceParserIsymtecAi::createSpringForce() {
 	ChVector<> absPos1 = marker1->GetAbsCoord().pos;
 	ChVector<> absPos2 = marker2->GetAbsCoord().pos;
 
-
 	//TODO: set spring params
 	auto spring = std::make_shared<ChLinkSpring>();
 	spring->Initialize(body1, body2, false, absPos1, absPos2, false, restLength);
@@ -133,9 +122,8 @@ void ChForceParserIsymtecAi::createSpringForce() {
 	AddRelation(spring);
 }
 
-
 void ChForceParserIsymtecAi::setAppliedForceInputs(ChMarkerDefined3DFunction& function3D, std::string propertyName) {
-	auto forceValues = isymtec_ai_utils::GetStringFixSizeVectorProperty(getObjectFrom(),	propertyName, 3);
+	auto forceValues = isymtec_ai_utils::GetStringFixSizeVectorProperty(getObjectFrom(), propertyName, 3);
 	for (unsigned index = 0; index < 3; index++)
 	{
 		auto functionInMarperPart = isymtec_ai_utils::FindOrCreateMuParserFunction(*m_FunctionStorage, forceValues[index]);

@@ -11,8 +11,6 @@ using namespace chrono;
 using namespace parser_test_utils;
 
 namespace {
-
-
 	///Create .json body object with all needed properties
 	std::shared_ptr<Value> createDummyBodyFrom(Document& document) {
 		using namespace body_isymtec_ai_params;
@@ -20,7 +18,6 @@ namespace {
 		//auto bodyFrom = std::make_shared<Value >(rapidjson::kObjectType);
 		auto bodyFrom = createDummyObject("Body", curAllocator);
 
-		
 		addStringMember(*bodyFrom, PROPERTY_MASS, "1", curAllocator);
 		addStringMember(*bodyFrom, PROPERTY_CENTER_OF_MASS, "0, 0, 0", curAllocator);
 		addStringMember(*bodyFrom, PROPERTY_INERTIA, "1, 0, 0; 0, 1, 0; 0, 0, 1", curAllocator);
@@ -32,7 +29,6 @@ namespace {
 		bodyFrom->AddMember(StringRef(PROPERTY_FIXED.c_str()), false, curAllocator);
 		return bodyFrom;
 	}
-
 
 	std::shared_ptr<ChBodyParserIsymtecAi> createBodyParser() {
 		// Make a system
@@ -47,7 +43,6 @@ namespace {
 
 // The fixture for testing class Foo.
 class ChBodyParserIsymtecAiTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChBodyParserIsymtecAiTest() {
@@ -65,12 +60,9 @@ protected:
 		return m_Document.GetAllocator();
 	}
 
-
 	rapidjson::Document m_Document;
 	std::shared_ptr<ChBodyParserIsymtecAi> m_BodyParser;
 };
-
-
 
 TEST_F(ChBodyParserIsymtecAiTest, ParseTranslationTest) {
 	using namespace body_isymtec_ai_params;
@@ -80,7 +72,6 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseTranslationTest) {
 	ChVector<> absPosRef{ 10, 20, 30 };
 	std::string absPosRefStr = ConvertVectorToString(absPosRef);
 	setStringMember(*bodyFrom, PROPERTY_TRANSLATION, absPosRefStr, GetAllocator());
-
 
 	m_BodyParser->ParseObject(*bodyFrom);
 	auto& body = *m_BodyParser->getGenerateObjPtr<chrono::ChBodyAuxRef>();
@@ -102,7 +93,6 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseRotationsTest_90DegX) {
 	m_BodyParser->ParseObject(*bodyFrom);
 	auto& body = *m_BodyParser->getGenerateObjPtr<chrono::ChBodyAuxRef>();
 
-
 	//need to use static cast because GetRotAxis is non-cost
 	//auto& absCoor = static_cast<ChFrameMoving<>>(body.GetFrame_REF_to_abs());
 	auto absCoor = body.GetFrame_REF_to_abs();
@@ -113,11 +103,9 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseRotationsTest_90DegX) {
 	ChVector<> absAxis = absCoor.GetRotAxis();
 	ChVector<> absAxisRef(1, 0, 0);
 	EXPECT_TRUE(absAxis.Equals(absAxisRef));
-
 }
 
-
-///test complex rotation 
+///test complex rotation
 TEST_F(ChBodyParserIsymtecAiTest, ParseRotationsTest_Complex) {
 	using namespace body_isymtec_ai_params;
 	auto bodyFrom = createBodyFrom();
@@ -148,16 +136,13 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseRotationsTest_Complex) {
 	EXPECT_TRUE(zAxis.Equals(zAxisRef, 10E-8));
 }
 
-
-
-
-///test complex rotation 
+///test complex rotation
 TEST_F(ChBodyParserIsymtecAiTest, ParseInertiaTest) {
 	using namespace body_isymtec_ai_params;
 	auto bodyFrom = createBodyFrom();
 
 	double massRef = 5303.972;
-	ChVector<> centerOfMassRef (-5.18566, 0.42927, 12.1929);
+	ChVector<> centerOfMassRef(-5.18566, 0.42927, 12.1929);
 	std::string inertia = "1.170E+07,  5.458E+04,  1.977E+06;  5.458E+04,  1.220E+07,  -1.283E+05;  1.977E+06,  -1.283E+05,  1.370E+07";
 	setStringMember(*bodyFrom, PROPERTY_MASS, std::to_string(massRef), GetAllocator());
 	std::string centerOfMassStr = ConvertVectorToString(centerOfMassRef);
@@ -190,8 +175,6 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseInertiaTest) {
 	bool sameInertia = inertiaCentralRef.Equals(inertiaCentralProve, 10E+3);
 	EXPECT_TRUE(sameInertia);
 }
-
-
 
 ///test angular and linear velocities
 TEST_F(ChBodyParserIsymtecAiTest, ParseVelocitiesTest) {

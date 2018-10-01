@@ -10,38 +10,33 @@
 #include <map>
 #include "core/ChCoordsys.h"
 
-
-
 namespace chrono {
 	class ChSystem;
 	class ChBodyAuxRef;
 }
 
-	class ChRelationsIsymtecAi;
+class ChRelationsIsymtecAi;
 
-	namespace marker_isymtec_ai_params {
-		const std::string PROPERTY_TRANSLATION = "translation";
-		const std::string PROPERTY_ORIENTATION = "orientation";
-		const std::string MARKER_CONTAINER = "markerContainer";
-		const std::string REFERENCE_CS_ID = "referenceCSID";
-	}
+namespace marker_isymtec_ai_params {
+	const std::string PROPERTY_TRANSLATION = "translation";
+	const std::string PROPERTY_ORIENTATION = "orientation";
+	const std::string MARKER_CONTAINER = "markerContainer";
+	const std::string REFERENCE_CS_ID = "referenceCSID";
+}
 
 /// @addtogroup parser_isymtec_ai
 /// isymtec.ai Marker parser
 class ChApiIsymtecAI ChMarkerParserIsymtecAi {
-
 	struct ChGraphNode {
 		std::vector<std::string>  m_DependentMarkers;
 		bool m_IsInTree{ false }; //<showing if there is a way from this marker to body (e.g. it is in tree with the body as a root)
 		rapidjson::Value* m_MarkerFrom{ nullptr };
 	};
 
+public:
+	ChMarkerParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations);
 
-
-  public:
-	  ChMarkerParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations);
-	  
-	  void ParseBodyMarkers(rapidjson::Value& bodyFrom);
+	void ParseBodyMarkers(rapidjson::Value& bodyFrom);
 
 private:
 	void CreateGraph();
@@ -61,8 +56,7 @@ private:
 
 	rapidjson::Value* m_BodyFrom;
 
-
-	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;	  
+	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;
 	std::shared_ptr<chrono::ChBodyAuxRef> m_Body;
 
 	std::map<std::string, ChGraphNode> m_Graph;

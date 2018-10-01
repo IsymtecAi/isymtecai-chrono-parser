@@ -4,11 +4,8 @@
 
 using namespace chrono;
 
-
-
 // The fixture for testing class Foo.
 class ChMuParserFunctionTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChMuParserFunctionTest() {};
@@ -17,8 +14,6 @@ protected:
 	virtual ~ChMuParserFunctionTest() {};
 };
 
-
-
 TEST_F(ChMuParserFunctionTest, getYTest) {
 	ChMuParserFunction function0;
 	double valueRef = 5.0;
@@ -26,8 +21,6 @@ TEST_F(ChMuParserFunctionTest, getYTest) {
 	double valueCalc = function0.Get_y(0);
 	ASSERT_EQ(valueCalc, valueRef);
 }
-
-
 
 TEST_F(ChMuParserFunctionTest, getYTestPiSmall) {
 	ChMuParserFunction function0;
@@ -45,7 +38,6 @@ TEST_F(ChMuParserFunctionTest, getYTestPiBig) {
 	ASSERT_EQ(valueCalc, valueRef);
 }
 
-
 TEST_F(ChMuParserFunctionTest, getYTestESmall) {
 	ChMuParserFunction function0;
 	double valueRef = CH_C_E;
@@ -54,7 +46,6 @@ TEST_F(ChMuParserFunctionTest, getYTestESmall) {
 	ASSERT_EQ(valueCalc, valueRef);
 }
 
-
 TEST_F(ChMuParserFunctionTest, getYTestEBig) {
 	ChMuParserFunction function0;
 	double valueRef = CH_C_E;
@@ -62,8 +53,6 @@ TEST_F(ChMuParserFunctionTest, getYTestEBig) {
 	double valueCalc = function0.Get_y(0);
 	ASSERT_EQ(valueCalc, valueRef);
 }
-
-
 
 ///calculate square of input value
 TEST_F(ChMuParserFunctionTest, getYTestSquare) {
@@ -78,9 +67,6 @@ TEST_F(ChMuParserFunctionTest, getYTestSquare) {
 	double valueCalc = function0.Get_y(xValue);
 	ASSERT_NEAR(valueCalc, valueRef, 10E-14);
 }
-
-
-
 
 //
 //

@@ -43,13 +43,9 @@ using namespace std;
 \brief Implementation of the standard floating point parser.
 */
 
-
-
 /** \brief Namespace for mathematical applications. */
 namespace mu
 {
-
-
 	//---------------------------------------------------------------------------
 	// Trigonometric function
 	value_type Parser::Sin(value_type v) { return MathImpl<value_type>::Sin(v); }
@@ -109,7 +105,7 @@ namespace mu
 	value_type Parser::Sqrt(value_type v)
 	{
 #ifdef MUP_MATH_EXCEPTIONS
-		if (v<0)
+		if (v < 0)
 			throw ParserError(ecDOMAIN_ERROR, _T("sqrt"));
 #endif
 
@@ -149,7 +145,7 @@ namespace mu
 			throw exception_type(_T("too few arguments for function sum."));
 
 		value_type fRes = 0;
-		for (int i = 0; i<a_iArgc; ++i) fRes += a_afArg[i];
+		for (int i = 0; i < a_iArgc; ++i) fRes += a_afArg[i];
 		return fRes;
 	}
 
@@ -164,10 +160,9 @@ namespace mu
 			throw exception_type(_T("too few arguments for function sum."));
 
 		value_type fRes = 0;
-		for (int i = 0; i<a_iArgc; ++i) fRes += a_afArg[i];
+		for (int i = 0; i < a_iArgc; ++i) fRes += a_afArg[i];
 		return fRes / (value_type)a_iArgc;
 	}
-
 
 	//---------------------------------------------------------------------------
 	/** \brief Callback for determining the minimum value out of a vector.
@@ -180,12 +175,11 @@ namespace mu
 			throw exception_type(_T("too few arguments for function min."));
 
 		value_type fRes = a_afArg[0];
-		for (int i = 0; i<a_iArgc; ++i)
+		for (int i = 0; i < a_iArgc; ++i)
 			fRes = std::min(fRes, a_afArg[i]);
 
 		return fRes;
 	}
-
 
 	//---------------------------------------------------------------------------
 	/** \brief Callback for determining the maximum value out of a vector.
@@ -198,11 +192,10 @@ namespace mu
 			throw exception_type(_T("too few arguments for function min."));
 
 		value_type fRes = a_afArg[0];
-		for (int i = 0; i<a_iArgc; ++i) fRes = std::max(fRes, a_afArg[i]);
+		for (int i = 0; i < a_iArgc; ++i) fRes = std::max(fRes, a_afArg[i]);
 
 		return fRes;
 	}
-
 
 	//---------------------------------------------------------------------------
 	/** \brief Default value recognition callback.
@@ -228,7 +221,6 @@ namespace mu
 		*a_fVal = fVal;
 		return 1;
 	}
-
 
 	//---------------------------------------------------------------------------
 	/** \brief Constructor.
@@ -339,7 +331,6 @@ namespace mu
 		// this is just sample code to illustrate modifying variable names on the fly.
 		// I'm not sure anyone really needs such a feature...
 		/*
-
 
 		string sVar(pExpr->begin()+nStart, pExpr->begin()+nEnd);
 		string sRepl = std::string("_") + sVar + "_";

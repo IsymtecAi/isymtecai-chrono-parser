@@ -7,7 +7,6 @@
 #include "core/ChQuaternion.h"
 #include "chrono/core/ChMatrix33.h"
 
-
 namespace chrono {
 	class ChObj;
 	class ChFunction;
@@ -16,10 +15,8 @@ namespace chrono {
 class ChMuParserFunction;
 class ChFunctionStorage;
 
-
 /// @addtogroup parser_isymtec_ai
 namespace isymtec_ai_utils {
-
 	const std::string PROPERTY_TYPE = "typeName";
 	const std::string PROPERTY_NAME = "name";
 	const std::string PROPERTY_UUID = "uuid";
@@ -38,18 +35,15 @@ namespace isymtec_ai_utils {
 	///get string property of object (if no property exist, generate exception)
 	ChApiIsymtecAI int GetIntProperty(rapidjson::Value& objFrom, const std::string& memberName);
 
-
-	///get bool property of object (if no property exist, generate exception) 
+	///get bool property of object (if no property exist, generate exception)
 	ChApiIsymtecAI bool GetBoolProperty(rapidjson::Value& objFrom, const std::string& memberName);
 
 	ChApiIsymtecAI rapidjson::Value::Array GetElementsInContainer(rapidjson::Value& parsedObject, const std::string& containerName);
-
 
 	ChApiIsymtecAI chrono::ChVector<> getVectorProperty(rapidjson::Value& objFrom, const std::string& memberName);
 
 	ChApiIsymtecAI chrono::ChMatrix33<> GetMatrix33Property(rapidjson::Value& objFrom, const std::string& memberName);
 
-	
 	ChApiIsymtecAI std::vector<std::string> GetStringVectorProperty(rapidjson::Value& objFrom, const std::string& memberName);
 
 	ChApiIsymtecAI std::vector<std::string> GetStringFixSizeVectorProperty(rapidjson::Value& objFrom, const std::string& memberName, size_t sizeVec);
@@ -60,14 +54,10 @@ namespace isymtec_ai_utils {
 
 	ChApiIsymtecAI std::string getUUID(rapidjson::Value& parsedObject);
 
-
-
 	ChApiIsymtecAI std::shared_ptr<ChMuParserFunction> CreateMuParserFunction(const std::string& functionExpression);
-
 
 	///input - name of the function or expression
 	ChApiIsymtecAI std::shared_ptr<chrono::ChFunction> FindOrCreateMuParserFunction(const ChFunctionStorage& functionStorage, const std::string& functionExpression);
-	
 }
 
 #endif

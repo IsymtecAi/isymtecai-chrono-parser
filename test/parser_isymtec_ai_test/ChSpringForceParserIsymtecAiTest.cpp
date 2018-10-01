@@ -15,9 +15,7 @@ using namespace chrono;
 using namespace force_isymtec_ai_params;
 using namespace parser_test_utils;
 
-
 class ChSpringForceParserIsymtecAiTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChSpringForceParserIsymtecAiTest() {
@@ -39,7 +37,6 @@ protected:
 		addStringMember(*output, CS2_ID, markerUUid2, curAllocator);
 		return output;
 	}
-
 
 	void addMarker2(std::shared_ptr<chrono::ChBodyAuxRef> body) {
 		m_Marker2 = std::make_shared<ChMarker>("Marker2", body.get(), ChCoordsys<>(), ChCoordsys<>(), ChCoordsys<>());
@@ -81,13 +78,13 @@ protected:
 	}
 
 	rapidjson::Document* m_Document;
-	
+
 	std::shared_ptr<ChForceParserIsymtecAi> m_Parser;
 	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;
 	std::shared_ptr<ChFunctionStorage> m_FunctionStorage;
 	//Value* m_BodyFrom;
 	std::shared_ptr<chrono::ChBodyAuxRef> m_Body2;
-	std::shared_ptr<chrono::ChBodyAuxRef> m_Body;	
+	std::shared_ptr<chrono::ChBodyAuxRef> m_Body;
 	std::shared_ptr<chrono::ChMarker> m_Marker1;
 	std::shared_ptr<Value> m_Marker1From;
 
@@ -95,10 +92,7 @@ protected:
 	std::shared_ptr<Value> m_Marker2From;
 
 	std::shared_ptr<ChSystemSMC> m_System;
-
-	
 };
-
 
 ///trivial test prove if force is added to the body
 TEST_F(ChSpringForceParserIsymtecAiTest, ParseObjectTestIsAdded) {
@@ -111,16 +105,16 @@ TEST_F(ChSpringForceParserIsymtecAiTest, ParseObjectTestIsAdded) {
 	EXPECT_EQ(linkList.size(), 1);
 }
 
-///test when body1 and marker1 translated 
+///test when body1 and marker1 translated
 TEST_F(ChSpringForceParserIsymtecAiTest, ParseTranslatedBody) {
 	auto forceFrom1 = createSpringForceFrom();
 
-	ChVector<> bodyTranslation{10, 0, 0};
-	ChFrame<> bodyRefToAbs{ bodyTranslation, chrono::ChQuaternion<>()};
+	ChVector<> bodyTranslation{ 10, 0, 0 };
+	ChFrame<> bodyRefToAbs{ bodyTranslation, chrono::ChQuaternion<>() };
 	m_Body->SetFrame_REF_to_abs(bodyRefToAbs);
 
 	ChVector<> markerTranslation{ 20, 0, 0 };
-	Coordsys absCoor{ markerTranslation, chrono::ChQuaternion<>()};
+	Coordsys absCoor{ markerTranslation, chrono::ChQuaternion<>() };
 	m_Marker1->Impose_Abs_Coord(absCoor);
 
 	double stifness = 7.0;
@@ -135,6 +129,6 @@ TEST_F(ChSpringForceParserIsymtecAiTest, ParseTranslatedBody) {
 	force0.Update(0.0);
 
 	ChVector<> cForce = force0.GetC_force();
-	ChVector<> cForceRef{(-markerTranslation[0] + restLength) * stifness, 0., 0. };
+	ChVector<> cForceRef{ (-markerTranslation[0] + restLength) * stifness, 0., 0. };
 	EXPECT_TRUE(cForce.Equals(cForceRef));
 }

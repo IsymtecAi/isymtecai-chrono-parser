@@ -17,8 +17,8 @@
 #endif
 
 /**
-    @defgroup IsymtecAi_parser_module IsymtecAi parser
-    @brief Parser of Isymtec.Ai MBS output files
+	@defgroup IsymtecAi_parser_module IsymtecAi parser
+	@brief Parser of Isymtec.Ai MBS output files
 
 */
 

@@ -22,7 +22,6 @@ namespace {
 }
 
 class ChSimulationCosineForceTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChSimulationCosineForceTest() {
@@ -30,9 +29,7 @@ protected:
 
 	// You can do clean-up work that doesn't throw exceptions here.
 	virtual ~ChSimulationCosineForceTest() {};
-
 };
-
 
 TEST_F(ChSimulationCosineForceTest, Test0) {
 	ChSimulationCosineForce simulation;
@@ -56,7 +53,6 @@ TEST_F(ChSimulationCosineForceTest, Test0) {
 	double minCoor = *std::min_element(coorZ.begin(), coorZ.end());
 	EXPECT_GE(minCoor, 0.0);
 	double maxCoor = *std::max_element(coorZ.begin(), coorZ.end());
-
 
 	EXPECT_NEAR(maxCoor, 0.2026, 0.01);
 	EXPECT_NEAR(coorZ.back(), 0.0, 0.015);

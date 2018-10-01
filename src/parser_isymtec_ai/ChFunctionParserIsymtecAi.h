@@ -1,4 +1,3 @@
-
 #ifndef CH_FUNCTION_PARSER_ISYMTEC_AI_H
 #define CH_FUNCTION_PARSER_ISYMTEC_AI_H
 
@@ -8,7 +7,6 @@
 #include <string>
 
 #include "chrono_thirdparty/rapidjson/document.h"
-
 
 namespace chrono {
 	class ChSystem;
@@ -27,14 +25,12 @@ namespace function_isymtec_ai_params {
 
 /// @addtogroup parser_isymtec_ai
 /// @{
-
 /// isymtec.ai Function parser
 /// asssumed that functions depend only on time
-class ChApiIsymtecAI ChFunctionParserIsymtecAi: public ChElementaryParserIsymtecAi {
+class ChApiIsymtecAI ChFunctionParserIsymtecAi : public ChElementaryParserIsymtecAi {
 public:
 	ChFunctionParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations,
 		std::shared_ptr<ChFunctionStorage> functionStorage);
-
 
 private:
 	virtual void doParseObject() override final;

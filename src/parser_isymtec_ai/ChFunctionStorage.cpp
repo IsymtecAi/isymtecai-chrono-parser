@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChFunctionStorage.h"
 #include "physics/ChObject.h"
 #include <memory>

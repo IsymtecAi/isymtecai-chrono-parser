@@ -4,9 +4,7 @@
 
 using namespace chrono;
 
-
-
-ChElementaryParserIsymtecAi::ChElementaryParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations):
+ChElementaryParserIsymtecAi::ChElementaryParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations) :
 	m_Relations(relations) {
 }
 

@@ -6,14 +6,9 @@
 #include <string>
 #include "physics/ChObject.h"
 
-
-
 namespace chrono {
 	class ChSystem;
 }
-
-
-
 
 /// @addtogroup parser_isymtec_ai
 /// Class, storing simulation parameters (integrator time steps, etc.)
@@ -44,6 +39,5 @@ private:
 	double m_IntegratorStepSize{ 0.0 };
 	double m_OutputStepSize{ 0.0 };
 };
-
 
 #endif

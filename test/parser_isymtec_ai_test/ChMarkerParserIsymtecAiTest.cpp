@@ -32,12 +32,10 @@ namespace {
 		return markerFrom;
 	}
 
-
 	std::shared_ptr<ChMarkerParserIsymtecAi> createMarkerParser(
 		std::shared_ptr<ChRelationsIsymtecAi> relations) {
 		// Make a system
 		auto curSystem = std::make_shared<ChSystemSMC>();
-
 
 		relations->SetSystem(curSystem);
 		auto markerParser = std::make_shared<ChMarkerParserIsymtecAi>(relations);
@@ -47,7 +45,6 @@ namespace {
 
 // The fixture for testing class Foo.
 class ChMarkerParserIsymtecAiTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChMarkerParserIsymtecAiTest() {
@@ -88,18 +85,15 @@ protected:
 	}
 
 	rapidjson::Document* m_Document;
-	
+
 	std::shared_ptr<ChMarkerParserIsymtecAi> m_MarkerParser;
 	std::shared_ptr<ChRelationsIsymtecAi> m_Relations;
 	Value* m_BodyFrom;
 	std::shared_ptr<chrono::ChBodyAuxRef> m_Body;
-	
 };
-
 
 ///prove if from one json marker will be generated exactly one chrono marker
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersOneMarker) {
-
 	std::string bodyUUid = isymtec_ai_utils::getUUID(*m_BodyFrom);
 	auto marker1 = createMarkerFrom("Marker1", bodyUUid, GetAllocator());
 	getJsonMarkersArr().PushBack(*marker1, GetAllocator());
@@ -112,10 +106,8 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersOneMarker) {
 	EXPECT_EQ(markersCount, 1);
 }
 
-
 ///prove if from two json marker will be generated exactly two chrono markers
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTwoMarker) {
-
 	std::string bodyUUid = isymtec_ai_utils::getUUID(*m_BodyFrom);
 	auto marker1From = createMarkerFrom("Marker1", bodyUUid, GetAllocator());
 
@@ -135,11 +127,8 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTwoMarker) {
 	EXPECT_EQ(markersCount, 2);
 }
 
-
-
 ///wrong reference id in marker2
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersFalseUUID) {
-
 	std::string bodyUUid = isymtec_ai_utils::getUUID(*m_BodyFrom);
 	auto marker1From = createMarkerFrom("Marker1", bodyUUid, GetAllocator());
 
@@ -161,15 +150,12 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersFalseUUID) {
 	catch (chrono::ChException exception)
 	{
 		canParse = false;
-	}	
+	}
 	EXPECT_FALSE(canParse);
 }
 
-
-
 ///marker1 and marker2 reference each other, e.g. closed loop
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersClosedLoop) {
-
 	std::string bodyUUid = isymtec_ai_utils::getUUID(*m_BodyFrom);
 	auto marker1From = createMarkerFrom("Marker1", bodyUUid, GetAllocator());
 
@@ -182,7 +168,6 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersClosedLoop) {
 	getJsonMarkersArr().PushBack(*marker2, GetAllocator());
 
 	setStringMember(marker1, REFERENCE_CS_ID, marker2UUid, GetAllocator());
-
 
 	//writeInFile(*m_Document, "output.json");
 
@@ -198,9 +183,6 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersClosedLoop) {
 	}
 	EXPECT_FALSE(canParse);
 }
-
-
-
 
 ///prove the absolute coordinates of marker by simple translation
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestTranslation) {
@@ -227,16 +209,12 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestTranslation) {
 	EXPECT_TRUE(absPosRef.Equals(absPos));
 }
 
-
-
-
-
 ///prove the absolute coordinates of marker by translation of marker and body
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestTranslation2) {
 	std::string bodyUUid = isymtec_ai_utils::getUUID(*m_BodyFrom);
 	auto marker1 = createMarkerFrom("Marker1", bodyUUid, GetAllocator());
 
-	ChVector<> bodyAbsCoor{ 7, 4, 12};
+	ChVector<> bodyAbsCoor{ 7, 4, 12 };
 	m_Body->SetFrame_REF_to_abs(ChFrame<>(bodyAbsCoor));
 
 	ChVector<> relPosMarker{ 10, 20, 30 };
@@ -260,8 +238,6 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestTranslation2) {
 
 	EXPECT_TRUE(markerAbsPosRef.Equals(absPos));
 }
-
-
 
 ///prove the absolute coordinates of marker by translation and orientation of marker and body
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor) {
@@ -288,7 +264,7 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor) {
 	size_t markersCount = markerlist.size();
 	EXPECT_EQ(markersCount, 1);
 
-	ChVector<> markerAbsPosRef{8.686027700272763, 14.144332326643553, 47.97568390233224};
+	ChVector<> markerAbsPosRef{ 8.686027700272763, 14.144332326643553, 47.97568390233224 };
 
 	auto chronoMarker = markerlist[0];
 	auto& absCoor = chronoMarker->GetAbsCoord();
@@ -301,7 +277,6 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor) {
 	ChVector<> yAxis = quat.GetYaxis();
 	ChVector<> zAxis = quat.GetZaxis();
 
-
 	ChVector<> xAxisRef{ -0.9508352378957854, 0.2943438293264457, -0.09630192372486296 };
 	ChVector<> yAxisRef{ -0.09043791541871038, 0.03350314998983439, 0.9953383959214458 };
 	ChVector<> zAxisRef{ 0.29619813272602397, 0.9551121657052656, -0.005236133250197783 };
@@ -310,8 +285,6 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor) {
 	EXPECT_TRUE(yAxis.Equals(yAxisRef, 10E-8));
 	EXPECT_TRUE(zAxis.Equals(zAxisRef, 10E-8));
 }
-
-
 
 ///prove the absolute coordinates of marker by translation and orientation of two marker and body
 TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor2) {
@@ -333,7 +306,7 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor2) {
 	getJsonMarkersArr().PushBack(*marker1, GetAllocator());
 
 	auto marker2 = createMarkerFrom("Marker2", marker1UUid, GetAllocator());
-	ChVector<> relPosMarker2{ -10, 7, 4};
+	ChVector<> relPosMarker2{ -10, 7, 4 };
 	std::string relOrientMarker2 = "-60, -20, -40";
 	std::string relPosMarkerStr2 = ConvertVectorToString(relPosMarker2);
 	setStringMember(*marker2, PROPERTY_TRANSLATION, relPosMarkerStr2, GetAllocator());
@@ -368,6 +341,3 @@ TEST_F(ChMarkerParserIsymtecAiTest, ParseBodyMarkersTestCoor2) {
 	EXPECT_TRUE(yAxis.Equals(yAxisRef, 10E-8));
 	EXPECT_TRUE(zAxis.Equals(zAxisRef, 10E-8));
 }
-
-
-

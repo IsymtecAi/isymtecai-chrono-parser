@@ -8,7 +8,6 @@
 #include "chrono_thirdparty/rapidjson/document.h"
 #include "parser_isymtec_ai/ChRelationsIsymtecAi.h"
 
-
 namespace chrono {
 	class ChSystem;
 	class ChArchiveOut;
@@ -25,9 +24,7 @@ namespace model_isymtec_ai_params {
 	const std::string END_TIME = "endTime";
 	const std::string INTEGRATOR_STEP_SIZE = "integratorStepSize";
 	const std::string OUTPUT_STEP_SIZE = "outputStepSize";
-
 }
-
 
 /// @addtogroup parser_isymtec_ai
 /// isymtec.ai MBS input file parser
@@ -38,7 +35,7 @@ public:
 	~ChParserIsymtecAi() {}
 
 	/// Parse the specified isymtec.ai MBS input file and create the model in the given system.
-	///If can't parse, return false. 
+	///If can't parse, return false.
 	bool Parse(std::shared_ptr<chrono::ChSystem> system,    ///< [in] containing Chrono system
 		const std::string& filename  ///< [in] isymtec.ai MBS input file name
 	);
@@ -50,7 +47,7 @@ public:
 	const std::shared_ptr<ChRelationsIsymtecAi> GetRelations() const { return m_Relations; };
 
 	/// Method to allow serialization of transient data to archives.
-	virtual void ArchiveOUT(chrono::ChArchiveOut& marchive) ;
+	virtual void ArchiveOUT(chrono::ChArchiveOut& marchive);
 private:
 	void CatchParserException(const ChExceptionIsymtecAi& parserException) const;
 
@@ -71,8 +68,6 @@ private:
 
 	std::shared_ptr<ChSimulationParameters> m_SimulationParameters;
 	std::shared_ptr<ChFunctionStorage> m_FunctionStorage;
-
 };
-
 
 #endif

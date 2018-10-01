@@ -23,7 +23,6 @@ namespace {
 
 // The fixture for testing class Foo.
 class ChSimulationFourBarTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChSimulationFourBarTest() {
@@ -31,9 +30,7 @@ protected:
 
 	// You can do clean-up work that doesn't throw exceptions here.
 	virtual ~ChSimulationFourBarTest() {};
-
 };
-
 
 TEST_F(ChSimulationFourBarTest, Test0) {
 	ChSimulationFourBar simulation;
@@ -54,11 +51,7 @@ TEST_F(ChSimulationFourBarTest, Test0) {
 	double minVel = *std::min_element(angularVel.begin(), angularVel.end());
 	double maxVel = *std::max_element(angularVel.begin(), angularVel.end());
 	double velRef = -CH_C_PI;
-	
+
 	EXPECT_NEAR(minVel, velRef, 10E-2);
 	EXPECT_NEAR(maxVel, velRef, 10E-2);
-
-
-
-
 }

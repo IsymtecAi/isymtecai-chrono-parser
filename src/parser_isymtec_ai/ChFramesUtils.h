@@ -21,10 +21,6 @@ namespace frames_utils {
 
 	///create marker1 whose z-axis is equal to y axis of original marker
 	ChApiIsymtecAI std::shared_ptr<chrono::ChMarker> createMarkerByRotationYToZ(const chrono::ChMarker& markerFrom, std::string markerName);
-
-
-
-
 }
 
 #endif

@@ -1,12 +1,9 @@
-
-
 #include "parser_isymtec_ai/ChRelationsIsymtecAi.h"
 #include "physics/ChObject.h"
 #include <memory>
 #include "ChIsymtecAiUtils.h"
 
 using namespace chrono;
-
 
 void ChRelationsIsymtecAi::Clear()
 {
@@ -39,7 +36,7 @@ namespace {
 
 void ChRelationsIsymtecAi::ArchiveOUT(chrono::ChArchiveOut & marchive) {
 	ChRelationEntry relationEntry;
-	for (auto& entry : m_GeneratedObjs)	{
+	for (auto& entry : m_GeneratedObjs) {
 		relationEntry.m_GuiID = &entry.first;
 		relationEntry.m_GeneratedObjs = &entry.second;
 		marchive << CHNVP(relationEntry, "Entry");
@@ -74,10 +71,8 @@ const std::vector<std::shared_ptr<chrono::ChObj>>& ChRelationsIsymtecAi::getGene
 	return it->second;
 }
 
-
 std::string ChRelationsIsymtecAi::getUUid(rapidjson::Value& objFrom) const
 {
 	std::string output = isymtec_ai_utils::getUUID(objFrom);
 	return output;
 }
-

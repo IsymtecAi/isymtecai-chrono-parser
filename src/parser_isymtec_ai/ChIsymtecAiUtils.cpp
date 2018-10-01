@@ -3,17 +3,14 @@
 #include "physics/ChObject.h"
 #include "core/ChVector.h"
 #include <locale>
-#include <algorithm> 
+#include <algorithm>
 #include <cctype>
 #include <locale>
 #include "parser_isymtec_ai/ChMuParserFunction.h"
 #include "parser_isymtec_ai/ChFunctionStorage.h"
 #include "parser_isymtec_ai/ChExceptionIsymtecAi.h"
 
-
-
 namespace {
-
 	const char VEC_DELIMITER = ',';
 	const char MATRIX_ROW_DELIMITER = ';';
 
@@ -37,7 +34,6 @@ namespace {
 		rtrim(s);
 	}
 
-
 	std::vector<std::string>  SplitStringToTockens(std::string inputString, char delimiter) {
 		std::istringstream ss(inputString);
 		std::string token;
@@ -59,17 +55,11 @@ namespace {
 		}
 		return output;
 	}
-
-
-
 }
 
 using namespace chrono;
 
-
-
 namespace isymtec_ai_utils {
-
 	rapidjson::Value& GetMember(rapidjson::Value &objFrom, const std::string &memberName)
 	{
 		if (!objFrom.HasMember(memberName.c_str())) {
@@ -151,18 +141,18 @@ namespace isymtec_ai_utils {
 	ChApiIsymtecAI chrono::ChMatrix33<> GetMatrix33Property(rapidjson::Value& objFrom, const std::string& memberName)
 	{
 		std::string stingValue = GetStringProperty(objFrom, memberName);
-		auto rowsTockens = SplitStringToTockens(stingValue, MATRIX_ROW_DELIMITER);		
+		auto rowsTockens = SplitStringToTockens(stingValue, MATRIX_ROW_DELIMITER);
 		if (rowsTockens.size() != 3) {
 			throw chrono::ChException("Matrix property " + memberName + " should have three rows!!!");
 		}
 		chrono::ChMatrix33<> output;
-		for (int curRow = 0; curRow < rowsTockens.size() ; curRow++)
+		for (int curRow = 0; curRow < rowsTockens.size(); curRow++)
 		{
 			std::string curRowString = rowsTockens[curRow];
 			auto rowElementsStr = SplitStringToTockens(curRowString, VEC_DELIMITER);
 			if (rowElementsStr.size() != 3) {
-				throw chrono::ChException("Matrix property " + memberName + " error. Row " 
-					+  std::to_string(curRow) + " should have three columns!!!");
+				throw chrono::ChException("Matrix property " + memberName + " error. Row "
+					+ std::to_string(curRow) + " should have three columns!!!");
 			}
 			auto rowElements = stringVecToDoubleVec(rowElementsStr);
 			for (int curCol = 0; curCol < rowElements.size(); curCol++) {
@@ -179,18 +169,15 @@ namespace isymtec_ai_utils {
 		return stringTockens;
 	}
 
-
 	std::vector<std::string> GetStringFixSizeVectorProperty(rapidjson::Value& objFrom, const std::string& memberName, size_t sizeVec) {
 		auto output = GetStringVectorProperty(objFrom, memberName);
 		if (output.size() != sizeVec) {
 			std::string descriptions = "Has a size " + std::to_string(output.size()) +
 				" (should be" + std::to_string(sizeVec) + ")";
-			throw ChExceptionIsymtecAi(&objFrom, memberName,descriptions);
+			throw ChExceptionIsymtecAi(&objFrom, memberName, descriptions);
 		}
 		return output;
 	}
-
-
 
 	void SetObjectName(rapidjson::Value& parsedObject, chrono::ChObj& chronoObject, std::string postfix)
 	{
@@ -224,9 +211,7 @@ namespace isymtec_ai_utils {
 		auto function = functionStorage.getFunction(functionExpression);
 		if (function == nullptr) {
 			function = CreateMuParserFunction(functionExpression);
-		}		
+		}
 		return function;
 	}
 }
-
-

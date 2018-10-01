@@ -1,9 +1,7 @@
-
 #include "parser_isymtec_ai/ChLinkParserIsymtecAi.h"
 #include "parser_isymtec_ai/ChIsymtecAiUtils.h"
 #include "parser_isymtec_ai/ChRelationsIsymtecAi.h"
 #include "parser_isymtec_ai/ChFramesUtils.h"
-
 
 #include "chrono/physics/ChSystem.h"
 
@@ -14,20 +12,16 @@
 #include "chrono/physics/ChLinkMotorLinearSpeed.h"
 #include "chrono/physics/ChLinkMotorRotationSpeed.h"
 
-
 using namespace link_isymtec_ai_params;
 
 using namespace chrono;
 
-
-
 ChLinkParserIsymtecAi::ChLinkParserIsymtecAi(std::shared_ptr<ChRelationsIsymtecAi> relations,
-	std::shared_ptr<const ChFunctionStorage> functionStorage):
+	std::shared_ptr<const ChFunctionStorage> functionStorage) :
 	ChElementaryParserIsymtecAi(relations),
 	m_FunctionStorage(functionStorage)
 {
 }
-
 
 void ChLinkParserIsymtecAi::doParseObject() {
 	std::string marker1ID = isymtec_ai_utils::GetStringProperty(getObjectFrom(),
@@ -47,13 +41,12 @@ void ChLinkParserIsymtecAi::doParseObject() {
 	}
 
 	auto links = CreateLinks();
-	for (size_t i = 0; i < links.size(); i++)	{
+	for (size_t i = 0; i < links.size(); i++) {
 		auto link = links[i];
 		getRelations().GetSystem()->AddLink(link);
 		isymtec_ai_utils::SetObjectName(getObjectFrom(), *link, "_" + std::to_string(i));
 		AddRelation(link);
 	}
-
 }
 
 std::shared_ptr<chrono::ChBody> ChLinkParserIsymtecAi::GetBody1() const
@@ -63,15 +56,12 @@ std::shared_ptr<chrono::ChBody> ChLinkParserIsymtecAi::GetBody1() const
 	return output;
 }
 
-
 std::shared_ptr<chrono::ChBody> ChLinkParserIsymtecAi::GetBody2() const
 {
 	auto bodyPtr = dynamic_cast<ChBodyAuxRef*>(m_Marker2->GetBody());
 	auto output = getRelations().GetSystem()->SearchBody(bodyPtr->GetName());
 	return output;
 }
-
-
 
 std::shared_ptr<chrono::ChLinkMotorLinearSpeed> ChLinkParserIsymtecAi::CreateTranslationalVelocityLink(const std::string& dofExpression, size_t dofIndex)
 {
@@ -90,7 +80,6 @@ std::shared_ptr<chrono::ChLinkMotorLinearSpeed> ChLinkParserIsymtecAi::CreateTra
 	return output;
 }
 
-
 std::shared_ptr<chrono::ChLinkMotorRotationSpeed> ChLinkParserIsymtecAi::CreateRotationalVelocityLink(const std::string& dofExpression, size_t dofIndex)
 {
 	if (dofExpression == link_isymtec_ai_params::FREE_DOF) {
@@ -108,8 +97,7 @@ std::shared_ptr<chrono::ChLinkMotorRotationSpeed> ChLinkParserIsymtecAi::CreateR
 	return output;
 }
 
-
-void ChLinkParserIsymtecAi::initializeVelocityLink(size_t dofIndex, 
+void ChLinkParserIsymtecAi::initializeVelocityLink(size_t dofIndex,
 	std::shared_ptr<chrono::ChLinkMateGeneric> link, std::string markerNamePostfix)
 {
 	std::shared_ptr<chrono::ChMarker> marker1 = m_Marker1;
@@ -140,7 +128,7 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateVeloci
 		auto link = CreateTranslationalVelocityLink(translationalDOFs[index], index);
 		if (link != nullptr) {
 			output.push_back(link);
-		}		
+		}
 	}
 
 	auto rotationalDOFs = isymtec_ai_utils::GetStringVectorProperty(getObjectFrom(),
@@ -154,7 +142,7 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateVeloci
 		if (link != nullptr) {
 			output.push_back(link);
 		}
-	}	
+	}
 
 	return output;
 }
@@ -223,4 +211,3 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateLinks(
 	output->Initialize(m_Marker1, m_Marker2);
 	return { output };
 }
-

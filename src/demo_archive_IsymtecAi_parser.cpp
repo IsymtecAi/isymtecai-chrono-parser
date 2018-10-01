@@ -3,7 +3,7 @@
 // Authors: Dmitry Vlasenko
 // =============================================================================
 // Serialization Demo for the Mbs.Isymtec.Ai  Chrono parser
-// Parse the input file, simulates it and  and write the serialized model in 
+// Parse the input file, simulates it and  and write the serialized model in
 ///demo_archive_IsymtecAi_parser.json file
 // =============================================================================
 
@@ -34,13 +34,14 @@ private:
 };
 
 int main(int argc, char* argv[]) {
-    std::string filename;
-    if (argc > 1) {
-        filename = std::string(argv[1]);
-    } else {
+	std::string filename;
+	if (argc > 1) {
+		filename = std::string(argv[1]);
+	}
+	else {
 		std::cout << "no input filename!!!";
 		return -1;
-    }
+	}
 	ChSimulationDemo simulation;
 	bool parseOk = simulation.Parse(filename);
 
@@ -51,7 +52,6 @@ int main(int argc, char* argv[]) {
 
 	//simulation.Simulate();
 
-	
 	const std::string out_dir = GetChronoOutputPath() + "DEMO_ARCHIVE";
 	if (ChFileutils::MakeDirectory(out_dir.c_str()) < 0) {
 		std::cout << "Error creating directory " << out_dir << std::endl;
@@ -64,9 +64,8 @@ int main(int argc, char* argv[]) {
 	// Use a JSON archive object to serialize C++ objects into the file
 	ChArchiveOutJSON marchiveout(mfileo);
 
-
 	auto system = simulation.GetSystem();
 
 	marchiveout << CHNVP(simulation, "simulation");
-	//marchiveout << CHNVP(system, "system");  
+	//marchiveout << CHNVP(system, "system");
 }

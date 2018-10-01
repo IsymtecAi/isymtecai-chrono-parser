@@ -18,7 +18,6 @@ bool ChSimulationIsymtecAi::Parse(const std::string& filename)
 	return isParsed;
 }
 
-
 void ChSimulationIsymtecAi::Simulate() {
 	m_System->DoFullAssembly();
 	double endTime = GetSimulationParameters()->GetEndTime();
@@ -35,7 +34,7 @@ void ChSimulationIsymtecAi::Simulate() {
 	ProcessOutputTimeStep();
 }
 
-std::shared_ptr<ChSimulationParameters> ChSimulationIsymtecAi::GetSimulationParameters() const { 
+std::shared_ptr<ChSimulationParameters> ChSimulationIsymtecAi::GetSimulationParameters() const {
 	auto output = m_Parser->GetSimulationParameters();
 	return output;
 }

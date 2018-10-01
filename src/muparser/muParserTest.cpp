@@ -108,7 +108,7 @@ namespace mu
 			}
 			catch (...)
 			{
-				iStat += 1;  // this is not supposed to happen 
+				iStat += 1;  // this is not supposed to happen
 			}
 
 			try
@@ -223,8 +223,8 @@ namespace mu
 			iStat += EqnTest(_T("1 && 0"), 0, true);
 			iStat += EqnTest(_T("(a<b) && (b>a)"), 1, true);
 			iStat += EqnTest(_T("(a<b) && (a>b)"), 0, true);
-			//iStat += EqnTest(_T("12 and 255"), 12, true); 
-			//iStat += EqnTest(_T("12 and 0"), 0, true); 
+			//iStat += EqnTest(_T("12 and 255"), 12, true);
+			//iStat += EqnTest(_T("12 and 0"), 0, true);
 			iStat += EqnTest(_T("12 & 255"), 12, true);
 			iStat += EqnTest(_T("12 & 0"), 0, true);
 			iStat += EqnTest(_T("12&255"), 12, true);
@@ -303,7 +303,7 @@ namespace mu
 
 			// incorrect: '^' is yor here, not power
 			//    iStat += EqnTestInt("-(1+2)^2", -9, true);
-			//    iStat += EqnTestInt("-1^3", -1, true);          
+			//    iStat += EqnTestInt("-1^3", -1, true);
 
 			// Test precedence
 			// a=1, b=2, c=3
@@ -317,7 +317,6 @@ namespace mu
 			iStat += EqnTestInt(_T("c * b < a"), 0, true);
 			iStat += EqnTestInt(_T("c * b == 6 * a"), 1, true);
 			iStat += EqnTestInt(_T("2^2^3"), 256, true);
-
 
 			if (iStat == 0)
 				mu::console() << _T("passed") << endl;
@@ -349,7 +348,7 @@ namespace mu
       {                                              \
         iErr = (FAIL==false) ? 0 : 1;                \
       }                                              \
-      iStat += iErr;      
+      iStat += iErr;
 
 			// constant names
 			PARSER_THROWCHECK(Const, false, _T("0a"), 1)
@@ -455,7 +454,7 @@ namespace mu
 			iStat += EqnTest(_T("sqrt(a+(3))"), 2, true);// Multiple brackets
 			iStat += EqnTest(_T("sqrt((3)+a)"), 2, true);// Multiple brackets
 			iStat += EqnTest(_T("order(1,2)"), 1, true); // May not cause name collision with operator "or"
-			iStat += EqnTest(_T("(2+"), 0, false);       // missing closing bracket 
+			iStat += EqnTest(_T("(2+"), 0, false);       // missing closing bracket
 			iStat += EqnTest(_T("2++4"), 0, false);      // unexpected operator
 			iStat += EqnTest(_T("2+-4"), 0, false);      // unexpected operator
 			iStat += EqnTest(_T("(2+)"), 0, false);      // unexpected closing bracket
@@ -541,7 +540,7 @@ namespace mu
 				if (iCount != 4)
 					throw false;
 
-				// the next check will fail if the parser 
+				// the next check will fail if the parser
 				// erroneously creates new variables internally
 				if (p.GetVar().size() != 5)
 					throw false;
@@ -560,7 +559,7 @@ namespace mu
 				if (iCount != 3)
 					throw false;
 
-				// the next check will fail if the parser 
+				// the next check will fail if the parser
 				// erroneously creates new variables internally
 				if (p.GetVar().size() != 5)
 					throw false;
@@ -579,7 +578,6 @@ namespace mu
 				item = UsedVar.begin();
 				for (idx = 0; item != UsedVar.end(); ++item)
 					if (&vVarVal[idx++] != item->second) throw false;
-
 			}
 			catch (...)
 			{
@@ -688,7 +686,6 @@ namespace mu
 			return iStat;
 		}
 
-
 		//---------------------------------------------------------------------------
 		int ParserTester::TestInfixOprt()
 		{
@@ -760,7 +757,6 @@ namespace mu
 			return iStat;
 		}
 
-
 		//---------------------------------------------------------------------------
 		int ParserTester::TestPostFix()
 		{
@@ -825,7 +821,7 @@ namespace mu
 			iStat += EqnTest(_T("2*b*5 + 4*b"), 28, true);
 			iStat += EqnTest(_T("2*a/3"), 2.0 / 3.0, true);
 
-			// Addition auf cmVARMUL 
+			// Addition auf cmVARMUL
 			iStat += EqnTest(_T("3+b"), b + 3, true);
 			iStat += EqnTest(_T("b+3"), b + 3, true);
 			iStat += EqnTest(_T("b*3+2"), b * 3 + 2, true);
@@ -891,8 +887,6 @@ namespace mu
 
 			return iStat;
 		}
-
-
 
 		//---------------------------------------------------------------------------
 		int ParserTester::TestIfThenElse()
@@ -1079,7 +1073,7 @@ namespace mu
 			// <ibg 20090529>
 			// this is now legal, for reference see:
 			// https://sourceforge.net/forum/message.php?msg_id=7411373
-			//      iStat += ThrowTest( _T("sin=9"), ecUNEXPECTED_OPERATOR);    
+			//      iStat += ThrowTest( _T("sin=9"), ecUNEXPECTED_OPERATOR);
 			// </ibg>
 
 			iStat += ThrowTest(_T("(8)=5"), ecUNEXPECTED_OPERATOR);
@@ -1094,7 +1088,6 @@ namespace mu
 			return iStat;
 		}
 
-
 		//---------------------------------------------------------------------------
 		void ParserTester::AddTest(testfun_type a_pFun)
 		{
@@ -1107,7 +1100,7 @@ namespace mu
 			int iStat = 0;
 			try
 			{
-				for (int i = 0; i<(int)m_vTestFun.size(); ++i)
+				for (int i = 0; i < (int)m_vTestFun.size(); ++i)
 					iStat += (this->*m_vTestFun[i])();
 			}
 			catch (Parser::exception_type &e)
@@ -1141,7 +1134,6 @@ namespace mu
 			ParserTester::c_iCount = 0;
 			return true;
 		}
-
 
 		//---------------------------------------------------------------------------
 		int ParserTester::ThrowTest(const string_type &a_str, int a_iErrc, bool a_bFail)
@@ -1325,7 +1317,7 @@ namespace mu
 				p1->DefineFun(_T("order"), FirstArg);
 
 				// infix / postfix operator
-				// Note: Identifiers used here do not have any meaning 
+				// Note: Identifiers used here do not have any meaning
 				//       they are mere placeholders to test certain features.
 				p1->DefineInfixOprt(_T("$"), sign, prPOW + 1);  // sign with high priority
 				p1->DefineInfixOprt(_T("~"), plus2);          // high priority
@@ -1379,7 +1371,7 @@ namespace mu
 
 				// limited floating point accuracy requires the following test
 				bool bCloseEnough(true);
-				for (unsigned i = 0; i<sizeof(fVal) / sizeof(value_type); ++i)
+				for (unsigned i = 0; i < sizeof(fVal) / sizeof(value_type); ++i)
 				{
 					bCloseEnough &= (fabs(a_fRes - fVal[i]) <= fabs(fVal[i] * 0.00001));
 
@@ -1400,7 +1392,6 @@ namespace mu
 				}
 
 				iRet = ((bCloseEnough && a_fPass) || (!bCloseEnough && !a_fPass)) ? 0 : 1;
-
 
 				if (iRet == 1)
 				{

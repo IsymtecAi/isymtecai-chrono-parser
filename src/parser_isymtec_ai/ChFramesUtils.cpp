@@ -4,7 +4,6 @@
 #include "chrono/physics/ChMarker.h"
 #include "physics/ChBody.h"
 
-
 using namespace chrono;
 
 namespace
@@ -20,11 +19,9 @@ namespace
 		body->AddMarker(marker);
 		return marker;
 	}
-
 }
 
 namespace frames_utils {
-
 	chrono::ChQuaternion<> createQuaternionFromEulerXYZ(const chrono::ChVector<>& eulerAnglesXYZ)
 	{
 		ChVector<> orientationRad = CH_C_DEG_TO_RAD * eulerAnglesXYZ;
@@ -55,7 +52,4 @@ namespace frames_utils {
 		quatZ.Q_from_AngX(-CH_C_PI / 2);
 		return createRotatedMarker(markerFrom, markerName, quatZ);
 	}
-
 }
-
-

@@ -1,4 +1,3 @@
-
 #include "parser_isymtec_ai/ChFunctionParserIsymtecAi.h"
 #include "chrono/physics/ChBodyAuxRef.h"
 #include "parser_isymtec_ai/ChIsymtecAiUtils.h"
@@ -10,11 +9,8 @@
 #include "parser_isymtec_ai/ChMuParserFunction.h"
 #include "parser_isymtec_ai/ChFunctionStorage.h"
 
-
 using namespace function_isymtec_ai_params;
 using namespace chrono;
-
-
 
 ChFunctionParserIsymtecAi::ChFunctionParserIsymtecAi(
 	std::shared_ptr<ChRelationsIsymtecAi> relations,
@@ -42,4 +38,3 @@ void ChFunctionParserIsymtecAi::doParseObject() {
 
 	//return generatedFunction;
 }
-

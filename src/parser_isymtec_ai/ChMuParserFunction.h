@@ -5,7 +5,6 @@
 #include "chrono/core/ChApiCE.h"
 #include <string>
 
-
 #include <map>
 #include <vector>
 #include "motion_functions/ChFunction_Base.h"
@@ -16,7 +15,6 @@ namespace mu {
 }
 namespace chrono {
 	class ChSystem;
-
 }
 
 /// @addtogroup parser_isymtec_ai
@@ -30,14 +28,13 @@ public:
 	virtual double Get_y_dx(double x) const override;
 	virtual double Get_y_dxdx(double x) const override;
 
-
 	virtual ChMuParserFunction* Clone() const override;
 
 	///name of the input variable, used as input parameter in function Get_y
 	void DefineInputVariable(std::string inputVar);
 
 	void SetExpresson(const std::string &expr);
-	
+
 	void SetExpressionDif(const std::string &expr);
 
 	void SetExpressionDifDif(const std::string &expr);
@@ -55,6 +52,5 @@ private:
 	std::shared_ptr<mu::Parser> m_ParserValueDif;
 	std::shared_ptr<mu::Parser> m_ParserValueDifDif;
 };
-
 
 #endif

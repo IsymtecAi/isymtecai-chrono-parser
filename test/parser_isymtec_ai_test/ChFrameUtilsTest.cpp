@@ -2,13 +2,10 @@
 #include "parser_isymtec_ai/ChFramesUtils.h"
 #include "physics/ChBody.h"
 
-
 using namespace chrono;
-
 
 // The fixture for testing class Foo.
 class ChFrameUtilsTest : public ::testing::Test {
-
 protected:
 	// You can do set-up work for each test here.
 	ChFrameUtilsTest() {};
@@ -16,8 +13,6 @@ protected:
 	// You can do clean-up work that doesn't throw exceptions here.
 	virtual ~ChFrameUtilsTest() {};
 };
-
-
 
 TEST_F(ChFrameUtilsTest, createMarkerByRotationXToZTest) {
 	auto body0 = std::make_shared<ChBody>();
@@ -40,20 +35,16 @@ TEST_F(ChFrameUtilsTest, createMarkerByRotationXToZTest) {
 	ChVector<> yAxis1 = quat1.GetYaxis();
 	ChVector<> zAxis1 = quat1.GetZaxis();
 
-
 	EXPECT_TRUE(zAxis1.Equals(xAxis0, 10E-8));
 }
-
-
 
 TEST_F(ChFrameUtilsTest, createMarkerByRotationXToZTest2) {
 	auto body0 = std::make_shared<ChBody>();
 	auto marker0 = std::make_shared<ChMarker>("M1", body0.get(), ChCoordsys<>(), ChCoordsys<>(), ChCoordsys<>());
 	body0->AddMarker(marker0);
 
-	auto quat0From	= frames_utils::createQuaternionFromEulerXYZ(chrono::ChVector<>(50, 115, 40));
+	auto quat0From = frames_utils::createQuaternionFromEulerXYZ(chrono::ChVector<>(50, 115, 40));
 	marker0->SetCoord(chrono::ChVector<>(0.4, 15, 7), quat0From);
-
 
 	marker0->Update(0);
 
@@ -72,12 +63,8 @@ TEST_F(ChFrameUtilsTest, createMarkerByRotationXToZTest2) {
 	ChVector<> yAxis1 = quat1.GetYaxis();
 	ChVector<> zAxis1 = quat1.GetZaxis();
 
-
 	EXPECT_TRUE(zAxis1.Equals(xAxis0, 10E-8));
 }
-
-
-
 
 TEST_F(ChFrameUtilsTest, createMarkerByRotationYToZTest2) {
 	auto body0 = std::make_shared<ChBody>();
@@ -86,7 +73,6 @@ TEST_F(ChFrameUtilsTest, createMarkerByRotationYToZTest2) {
 
 	auto quat0From = frames_utils::createQuaternionFromEulerXYZ(chrono::ChVector<>(50, 115, 40));
 	marker0->SetCoord(chrono::ChVector<>(0.4, 15, 7), quat0From);
-
 
 	marker0->Update(0);
 
@@ -105,7 +91,5 @@ TEST_F(ChFrameUtilsTest, createMarkerByRotationYToZTest2) {
 	ChVector<> yAxis1 = quat1.GetYaxis();
 	ChVector<> zAxis1 = quat1.GetZaxis();
 
-
 	EXPECT_TRUE(zAxis1.Equals(yAxis0, 10E-8));
 }
-

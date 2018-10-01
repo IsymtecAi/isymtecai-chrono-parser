@@ -1,11 +1,9 @@
-
 #ifndef CH_MARKER_DEFINED_3DFUNCTION
 #define CH_MARKER_DEFINED_3DFUNCTION
 
 #include "parser_isymtec_ai/ChApiIsymtecAi.h"
 #include "chrono/core/ChApiCE.h"
 #include <string>
-
 
 #include <map>
 #include <vector>
@@ -27,7 +25,7 @@ public:
 	ChMarkerDefined3DFunction(std::shared_ptr<chrono::ChMarker> marker);
 
 	virtual ChMarkerDefined3DFunction* Clone() const override;
-	
+
 	void setFunctionInMarker(unsigned index, std::shared_ptr<const chrono::ChFunction> functionInMarker);
 
 	double Get_y(unsigned index, double time) const;
@@ -38,6 +36,5 @@ private:
 	std::shared_ptr<const chrono::ChFunction> m_Function2;
 	std::shared_ptr<chrono::ChMarker> m_Marker;
 };
-
 
 #endif
