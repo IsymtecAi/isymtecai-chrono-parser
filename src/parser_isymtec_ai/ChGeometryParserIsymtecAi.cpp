@@ -39,6 +39,9 @@ std::shared_ptr<chrono::ChVisualization> ChGeometryParserIsymtecAi::CreateGeomet
 	else if (geometryType == geometry_isymtec_ai_params::BOX) {
 		return CreateBox();
 	}
+	else if (geometryType == geometry_isymtec_ai_params::CAD_FILE) {
+		return nullptr;
+	}
 	else {
 		throwExeption(geometry_isymtec_ai_params::GEOMETRY_TYPE, "Unknown geometry type " + geometryType);
 		return nullptr;

@@ -25,6 +25,8 @@ namespace geometry_isymtec_ai_params {
 	const std::string REFERENCE_CS_ID = "referenceCSID";
 	const std::string CYLINDER = "Cylinder";
 	const std::string BOX = "Box";
+	const std::string CAD_FILE = "CadFile";
+	
 }
 
 namespace cylinder_isymtec_ai_params {
