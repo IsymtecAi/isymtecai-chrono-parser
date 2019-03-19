@@ -27,6 +27,7 @@ namespace {
 		addStringMember(*bodyFrom, PROPERTY_LINEAR_VEL, "0, 0, 0", curAllocator);
 		addStringMember(*bodyFrom, isymtec_ai_utils::PROPERTY_NAME, "my_body_A", curAllocator);
 		bodyFrom->AddMember(StringRef(PROPERTY_FIXED.c_str()), false, curAllocator);
+		bodyFrom->AddMember(StringRef(PROPERTY_IS_CENTRAL_INERTIA.c_str()), false, curAllocator);
 		return bodyFrom;
 	}
 
@@ -175,6 +176,52 @@ TEST_F(ChBodyParserIsymtecAiTest, ParseInertiaTest) {
 	bool sameInertia = inertiaCentralRef.Equals(inertiaCentralProve, 10E+3);
 	EXPECT_TRUE(sameInertia);
 }
+
+
+///test inertia if it is defined in central frame
+TEST_F(ChBodyParserIsymtecAiTest, ParseBodyCentralInertiaTest) {
+	using namespace body_isymtec_ai_params;
+	auto bodyFrom = createBodyFrom();
+
+	double massRef = 5303.972;
+	ChVector<> centerOfMassRef(-5.18566, 0.42927, 12.1929);
+	std::string inertia = "1.091E+07, 4.277E+04, 1.642E+06; 4.277E+04, 1.127E+07,	-1.006E+05;	1.642E+06,	-1.006E+05,	1.356E+07";
+	setStringMember(*bodyFrom, PROPERTY_MASS, std::to_string(massRef), GetAllocator());
+	std::string centerOfMassStr = ConvertVectorToString(centerOfMassRef);
+	setStringMember(*bodyFrom, PROPERTY_CENTER_OF_MASS, centerOfMassStr, GetAllocator());
+	setStringMember(*bodyFrom, PROPERTY_INERTIA, inertia, GetAllocator());
+
+	(*bodyFrom)[PROPERTY_IS_CENTRAL_INERTIA.c_str()] = true;
+
+
+	m_BodyParser->ParseObject(*bodyFrom);
+	auto& body = *m_BodyParser->getGenerateObjPtr<chrono::ChBodyAuxRef>();
+	double massProve = body.GetMass();
+
+	EXPECT_NEAR(massRef, massProve, 10E-12);
+
+	ChVector<> centerOfMassProve = body.GetFrame_COG_to_REF().GetPos();
+	bool sameCenterOfMass = centerOfMassRef.Equals(centerOfMassProve, 10E-12);
+	EXPECT_TRUE(sameCenterOfMass);
+
+	auto& inertiaCentralProve = body.GetInertia();
+
+	ChMatrix33<> inertiaCentralRef;
+	inertiaCentralRef[0][0] = 1.091E+07;
+	inertiaCentralRef[0][1] = 4.277E+04;
+	inertiaCentralRef[0][2] = 1.642E+06;
+	inertiaCentralRef[1][0] = 4.277E+04;
+	inertiaCentralRef[1][1] = 1.127E+07;
+	inertiaCentralRef[1][2] = -1.006E+05;
+	inertiaCentralRef[2][0] = 1.642E+06;
+	inertiaCentralRef[2][1] = -1.006E+05;
+	inertiaCentralRef[2][2] = 1.356E+07;
+
+	bool sameInertia = inertiaCentralRef.Equals(inertiaCentralProve, 10E+3);
+	EXPECT_TRUE(sameInertia);
+}
+
+
 
 ///test angular and linear velocities
 TEST_F(ChBodyParserIsymtecAiTest, ParseVelocitiesTest) {

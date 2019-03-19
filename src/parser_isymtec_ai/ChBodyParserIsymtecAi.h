@@ -21,7 +21,8 @@ namespace body_isymtec_ai_params {
 	const std::string PROPERTY_ORIENTATION = "orientation";
 	const std::string  PROPERTY_MASS = "mass";
 	const std::string  PROPERTY_CENTER_OF_MASS = "centerOfMass";
-	const std::string  PROPERTY_INERTIA = "inertia"; // inertia in body reference frame, not in central frame
+	const std::string  PROPERTY_IS_CENTRAL_INERTIA = "isCentralInertia"; // is inertia is in body frame or in central frame
+	const std::string  PROPERTY_INERTIA = "inertia"; // inertia in body reference frame or in central frame
 	const std::string  PROPERTY_LINEAR_VEL = "linearVel"; //<absolute linear velocity
 	const std::string  PROPERTY_ANGULAR_VEL = "angularVel"; //<absolute angular velocity
 }

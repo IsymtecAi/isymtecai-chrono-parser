@@ -83,7 +83,15 @@ void ChBodyParserIsymtecAi::setMassProperties()
 	ChVector<> centerOfMass = isymtec_ai_utils::getVectorProperty(getObjectFrom(), PROPERTY_CENTER_OF_MASS);
 	m_Body->SetFrame_COG_to_REF(ChFrame<>(centerOfMass));
 
-	ChMatrix33<> inertiaInReferenceFrame = isymtec_ai_utils::GetMatrix33Property(getObjectFrom(), PROPERTY_INERTIA);
-	ChMatrix33<> inertiaInCentralFrame = computeCentralInertia(mass, centerOfMass, inertiaInReferenceFrame);
+	ChMatrix33<> userDefinedInertia = isymtec_ai_utils::GetMatrix33Property(getObjectFrom(), PROPERTY_INERTIA);
+
+	///TODO: delete provement. We will always have this member
+	bool isInertiaInReferenceFrame = true;
+	if (getObjectFrom().HasMember(PROPERTY_IS_CENTRAL_INERTIA.c_str())) {
+		isInertiaInReferenceFrame = !(isymtec_ai_utils::GetBoolProperty(getObjectFrom(), PROPERTY_IS_CENTRAL_INERTIA));
+	}
+	ChMatrix33<> inertiaInCentralFrame = isInertiaInReferenceFrame ?
+		computeCentralInertia(mass, centerOfMass, userDefinedInertia) :
+		userDefinedInertia;
 	m_Body->SetInertia(inertiaInCentralFrame);
 }
