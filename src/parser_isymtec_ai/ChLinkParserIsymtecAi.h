@@ -20,6 +20,7 @@ namespace chrono {
 	class ChLink;
 	class ChLinkMateGeneric;
 	class ChLinkMotorRotationSpeed;
+	class ChLinkDistance;
 }
 class ChRelationsIsymtecAi;
 class ChFunctionStorage;
@@ -45,6 +46,8 @@ namespace link_isymtec_ai_params {
 	const std::string 	ALIGN = "Align";
 	const std::string 	PARALLEL = "Parallel";
 	const std::string 	PERPEND = "Perpend";
+	const std::string 	DISTANCE = "Distance";
+
 	/*const std::string 	TRAJECTORY = "Trajectory";*/ //TODO: develop trajectory link
 	const std::string 	REVOLUTEPRISMATIC = "RevolutePrismatic";
 	/*const std::string 	DISTANCE = "Distance";*/ //TODO: develop distance link
@@ -76,6 +79,7 @@ private:
 
 	std::vector<std::shared_ptr<chrono::ChLink>> CreateVelocityLinks();
 	std::vector<std::shared_ptr<chrono::ChLink>> CreateLinks();
+	std::shared_ptr<chrono::ChLinkDistance> CreateDistanceLink();
 
 	std::shared_ptr<chrono::ChMarker> m_Marker1;
 	std::shared_ptr<chrono::ChMarker> m_Marker2;
