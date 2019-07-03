@@ -12,6 +12,7 @@
 #include "chrono/physics/ChLinkMotorLinearSpeed.h"
 #include "chrono/physics/ChLinkMotorRotationSpeed.h"
 #include "chrono/physics/ChLinkDistance.h"
+#include "chrono/physics/ChLinkUniversal.h"
 
 using namespace link_isymtec_ai_params;
 
@@ -150,13 +151,21 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateVeloci
 
 std::shared_ptr<chrono::ChLinkDistance> ChLinkParserIsymtecAi::CreateDistanceLink()
 {
-	auto output = std::shared_ptr<chrono::ChLinkDistance>(new ChLinkDistance());
+	auto output = std::make_shared<ChLinkDistance>();
 
 	ChVector<> absPos1 = m_Marker1->GetAbsCoord().pos;
 	ChVector<> absPos2 = m_Marker2->GetAbsCoord().pos;
 	output->Initialize(GetBody1(), GetBody2(), false, absPos1, absPos2);
 	return output;
 }
+
+std::shared_ptr<chrono::ChLinkUniversal> ChLinkParserIsymtecAi::CreateUniversalLink()
+{
+	auto output = std::make_shared<ChLinkUniversal>();
+	output->Initialize(GetBody1(), GetBody2(), true, *m_Marker1, *m_Marker2);
+	return output;
+}
+
 
 std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateLinks()
 {
@@ -168,6 +177,10 @@ std::vector<std::shared_ptr<chrono::ChLink>> ChLinkParserIsymtecAi::CreateLinks(
 	}
 	else if (linkType == link_isymtec_ai_params::DISTANCE) {
 		auto output = CreateDistanceLink();
+		return { output };
+	}
+	else if (linkType == link_isymtec_ai_params::UNIVERSAL) {
+		auto output = CreateUniversalLink();
 		return { output };
 	}
 	else if (linkType == link_isymtec_ai_params::LOCK) {

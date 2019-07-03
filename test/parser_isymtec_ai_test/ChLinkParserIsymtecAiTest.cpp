@@ -35,6 +35,18 @@ protected:
 		return output;
 	}
 
+
+	std::shared_ptr<Value> createUniversalLinkFrom() {
+		auto& curAllocator = GetAllocator();
+		auto output = createDummyObject("Link1", curAllocator);
+		addStringMember(*output, LINK_TYPE, UNIVERSAL, curAllocator);
+		std::string markerUUid1 = isymtec_ai_utils::getUUID(*m_Marker1From);
+		std::string markerUUid2 = isymtec_ai_utils::getUUID(*m_Marker2From);
+		addStringMember(*output, CS1_ID, markerUUid1, curAllocator);
+		addStringMember(*output, CS2_ID, markerUUid2, curAllocator);
+		return output;
+	}
+
 	void addMarker2(std::shared_ptr<chrono::ChBodyAuxRef> body) {
 		m_Marker2 = std::make_shared<ChMarker>("Marker2", body.get(), ChCoordsys<>(), ChCoordsys<>(), ChCoordsys<>());
 		m_Marker2From = createDummyObject("Marker2", GetAllocator());
@@ -91,8 +103,8 @@ protected:
 	std::shared_ptr<ChSystemSMC> m_System;
 };
 
-///trivial test prove if force is added to the body
-TEST_F(ChLinkParserIsymtecAiTest, ParseObjectTestIsAdded) {
+///trivial test prove if distance link is added to the body
+TEST_F(ChLinkParserIsymtecAiTest, ParseObjectTestIsAddedDistance) {
 	auto linkFrom1 = createDistanceLinkFrom();
 	m_Parser->ParseObject(*linkFrom1);
 	auto& linkList = m_System->Get_linklist();
@@ -101,7 +113,7 @@ TEST_F(ChLinkParserIsymtecAiTest, ParseObjectTestIsAdded) {
 
 
 ///test when body1 and marker1 translated
-TEST_F(ChLinkParserIsymtecAiTest, ParseTranslatedBody) {
+TEST_F(ChLinkParserIsymtecAiTest, ParseTranslatedBodyDistance) {
 	auto linkFrom1 = createDistanceLinkFrom();
 
 	ChVector<> bodyTranslation{ 10, 0, 0 };
@@ -119,4 +131,42 @@ TEST_F(ChLinkParserIsymtecAiTest, ParseTranslatedBody) {
 
 	double distance = link1.GetCurrentDistance();
 	EXPECT_NEAR(distance, markerTranslation[0], 1E-10);
+}
+
+///trivial test prove if universal link is added to the body
+TEST_F(ChLinkParserIsymtecAiTest, ParseObjectTestIsAddedUniversal) {
+	auto linkFrom1 = createUniversalLinkFrom();
+	m_Parser->ParseObject(*linkFrom1);
+	auto& linkList = m_System->Get_linklist();
+	EXPECT_EQ(linkList.size(), 1);
+}
+
+
+///test when body1 and marker1 translated
+TEST_F(ChLinkParserIsymtecAiTest, ParseTranslatedBody) {
+	auto linkFrom1 = createUniversalLinkFrom();
+
+	ChVector<> bodyTranslation{ 10, 0, 0 };
+	ChFrame<> bodyRefToAbs{ bodyTranslation, chrono::ChQuaternion<>() };
+	m_Body->SetFrame_REF_to_abs(bodyRefToAbs);
+
+	ChVector<> marker1Translation{ 20, 0, 0 };
+	m_Marker1->Impose_Abs_Coord(Coordsys{ marker1Translation, chrono::ChQuaternion<>() });
+
+	ChVector<> marker2Translation{ 8, 3, 1 };
+	m_Marker2->Impose_Abs_Coord(Coordsys{ marker2Translation, chrono::ChQuaternion<>() });
+
+
+	m_Parser->ParseObject(*linkFrom1);
+
+	auto& link1 = dynamic_cast<ChLinkUniversal&>(*m_System->Get_linklist()[0]);
+	link1.Update(0.0);
+
+	ChVector<> marker1TranslationProve = link1.GetFrame1Abs().GetPos();
+	bool marker1TranslationOk = marker1Translation.Equals(marker1TranslationProve, 10E-12);
+	EXPECT_TRUE(marker1TranslationOk);
+
+	ChVector<> marker2TranslationProve = link1.GetFrame2Abs().GetPos();
+	bool marker2TranslationOk = marker2Translation.Equals(marker2TranslationProve, 10E-12);
+	EXPECT_TRUE(marker2TranslationOk);
 }
